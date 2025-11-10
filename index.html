@@ -8,99 +8,120 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       direction: rtl;
-      background-color: #121212; /* خلفية داكنة */
-      color: #e0e0e0; /* نص فاتح */
+      background-color: #0d0d0d;
+      color: #f2f2f2;
     }
     header {
-      position: relative;
+      background: #111;
+      padding: 25px 15px;
       text-align: center;
-      padding: 30px 15px;
+      position: relative;
     }
     header img {
-      width: 140px;
+      width: 150px;
       height: auto;
-      margin: auto;
       display: block;
+      margin: auto;
     }
     header h1 {
-      margin: 20px 0 0;
-      font-size: 2.5em;
-      color: #ffd600; /* لون شعار ذهبي فاتح */
+      margin: 15px 0 0;
+      font-size: 3em;
+      color: #ffb700;
+      line-height: 1.2;
     }
     #lang-toggle {
       position: absolute;
       top: 20px;
       left: 20px;
-      background: #ffd600;
+      background: #ffb700;
+      color: #0d0d0d;
       border: none;
-      padding: 10px 15px;
-      cursor: pointer;
+      padding: 10px 16px;
       font-weight: bold;
       border-radius: 5px;
-      color: #121212;
+      cursor: pointer;
     }
     .hero {
-      background: url('cinema-hero.jpg') no-repeat center center/cover;
-      height: 400px;
+      background: url('cinema-hall.jpg') no-repeat center center/cover;
+      height: 450px;
       display: flex;
       align-items: center;
       justify-content: center;
+      text-align: center;
     }
     .hero h2 {
       color: #ffffff;
-      font-size: 2.2em;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+      font-size: 2.5em;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.7);
       margin: 0;
+      padding: 0 20px;
     }
     .container {
-      width: 80%;
-      margin: 40px auto;
+      width: 85%;
+      margin: 50px auto;
       text-align: center;
+    }
+    .container h2 {
+      font-size: 2.2em;
+      color: #ffb700;
+      margin-bottom: 20px;
+    }
+    .container p {
+      font-size: 1.05em;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: auto;
     }
     .services {
       display: flex;
       justify-content: space-around;
       flex-wrap: wrap;
+      margin: 50px 0;
     }
     .service {
-      background: #1e1e1e;
-      padding: 20px;
-      margin: 10px;
+      background: #1c1c1c;
+      padding: 30px;
+      margin: 15px;
       width: 30%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      min-width: 280px;
       border-radius: 8px;
-      transition: transform .3s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: transform .25s, background .25s;
     }
     .service:hover {
-      transform: translateY(-5px);
-      background: #272727;
+      transform: translateY(-8px);
+      background: #242424;
     }
     .service img {
       width: 100%;
       height: auto;
       border-radius: 4px;
+      margin-bottom: 20px;
     }
     .service h3 {
-      color: #ffd600;
-      margin: 15px 0 10px;
+      color: #ffb700;
+      margin-bottom: 12px;
+      font-size: 1.5em;
     }
     .service p {
-      color: #cfcfcf;
+      color: #dcdcdc;
+      font-size: 1em;
+      line-height: 1.4;
     }
     .contact {
-      background: #000;
-      color: #e0e0e0;
+      background: #111;
+      color: #dddddd;
+      padding: 40px 15px;
       text-align: center;
-      padding: 30px 15px;
-      margin-top: 40px;
     }
     .contact a {
-      color: #ffd600;
+      color: #ffb700;
       text-decoration: none;
+      font-size: 1.1em;
     }
-    @media (max-width:768px) {
+    @media (max-width: 768px) {
       .services {
         flex-direction: column;
         align-items: center;
@@ -111,102 +132,106 @@
       header h1 {
         font-size: 2em;
       }
+      .hero {
+        height: 300px;
+      }
+      .hero h2 {
+        font-size: 1.8em;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <button id="lang-toggle">English</button>
-    <img src="sumer-logo.png" alt="شعار سومر سينما">
-    <h1 id="title">Sumer Cinema – حلول السينما الرقمية</h1>
-  </header>
 
-  <div class="hero">
-    <h2>تجعل عرضك السينمائي أكثر احترافية</h2>
-  </div>
+<header>
+  <button id="lang-toggle">English</button>
+  <img src="sumer-logo.png" alt="شعار سومر سينما">
+  <h1 id="title">Sumer Cinema – حلول السينما الرقمية</h1>
+</header>
 
-  <div class="container">
-    <h2 id="about-title">من نحن</h2>
-    <p id="about-text">نحن شركة <strong>سومر سينما</strong>، نوفّر حلولاً متكاملة في مجال السينما الرقمية، من أنظمة العرض والصوت إلى إدارة المحتوى السينمائي بأعلى مستوى من الجودة.</p>
+<div class="hero">
+  <h2 id="hero-text">نحو تجربة عرض سينمائي لا تُضاهى</h2>
+</div>
 
-    <h2 id="services-title">خدماتنا</h2>
-    <div class="services">
-      <div class="service">
-        <img src="projector-system.jpg" alt="أنظمة عرض السينما الرقمية">
-        <h3 id="service1-title">أنظمة عرض السينما الرقمية</h3>
-        <p id="service1-text">أجهزة عرض احترافية وإعدادات شاشة توافق أضخم الصالات.</p>
-      </div>
-      <div class="service">
-        <img src="audio-system.jpg" alt="أنظمة الصوت السينمائي">
-        <h3 id="service2-title">أنظمة الصوت السينمائي</h3>
-        <p id="service2-text">تجربة صوت محيطية غامرة بمعايير دولية.</p>
-      </div>
-      <div class="service">
-        <img src="kdm-management.jpg" alt="إدارة وتشغيل المحتوى السينمائي">
-        <h3 id="service3-title">إدارة المحتوى وتشغيل KDM</h3>
-        <p id="service3-text">حلول متكاملة لإدارة التشغيل والمفاتيح الرقمية (KDM) بسلاسة.</p>
-      </div>
+<div class="container">
+  <h2 id="about-title">من نحن</h2>
+  <p id="about-text">
+    نحن في <strong>سومر سينما</strong> نضع بين يديك أحدث التقنيات في عالم السينما الرقمية – من أنظمة العرض وصوت المحيط إلى إدارة المحتوى والمفاتيح الرقمية (KDM) – لنحول رؤيتك إلى واقع سينمائي مذهل.
+  </p>
+
+  <h2 id="services-title">خدماتنا</h2>
+  <div class="services">
+    <div class="service">
+      <img src="laser-projector.jpg" alt="أنظمة عرض الليزر السينمائي">
+      <h3 id="service1-title">أنظمة عرض الليزر السينمائي</h3>
+      <p id="service1-text">أجهزة عرض عالية الدقة تعمل بتقنية الليزر، توفر صورة لامعة وواضحة حتى في أقوى الإضاءات.</p>
+    </div>
+    <div class="service">
+      <img src="surround-sound.jpg" alt="تجربة صوت محيطية">
+      <h3 id="service2-title">تجربة صوت محيطية</h3>
+      <p id="service2-text">نظام صوت محيطي متكامل يتناغم مع الصورة ليمنحك إحساساً سينمائياً حقيقياً.</p>
+    </div>
+    <div class="service">
+      <img src="content-kdm-management.jpg" alt="إدارة المحتوى وKDM">
+      <h3 id="service3-title">إدارة المحتوى و KDM</h3>
+      <p id="service3-text">حلول متقدمة لإدارة تشغيل الأفلام والمفاتيح الرقمية، مع تنبيهات تلقائية وانسيابية عالية.</p>
     </div>
   </div>
+</div>
 
-  <div class="contact">
-    <h2 id="contact-title">تواصل معنا</h2>
-    <p id="contact-text">للاستفسارات، يمكنكم مراسلتنا عبر البريد الإلكتروني:</p>
-    <p><a href="mailto:suhibaltae99@gmail.com">sumer.cinema@gmail.com</a></p>
-  </div>
+<div class="contact">
+  <h2 id="contact-title">تواصل معنا</h2>
+  <p id="contact-text">للاستفسارات أو لطلب عرض، تواصل معنا عبر:</p>
+  <p><a href="mailto:sumer.cinema@gmail.com">sumer.cinema@gmail.com</a></p>
+</div>
 
-  <script>
-    const translations = {
-      "ar": {
-        "title": "Sumer Cinema – حلول السينما الرقمية",
-        "about-title": "من نحن",
-        "about-text": "نحن شركة سومر سينما، نوفّر حلولاً متكاملة في مجال السينما الرقمية، من أنظمة العرض والصوت إلى إدارة المحتوى السينمائي بأعلى مستوى من الجودة.",
-        "services-title": "خدماتنا",
-        "service1-title": "أنظمة عرض السينما الرقمية",
-        "service1-text": "أجهزة عرض احترافية وإعدادات شاشة توافق أضخم الصالات.",
-        "service2-title": "أنظمة الصوت السينمائي",
-        "service2-text": "تجربة صوت محيطية غامرة بمعايير دولية.",
-        "service3-title": "إدارة المحتوى وتشغيل KDM",
-        "service3-text": "حلول متكاملة لإدارة التشغيل والمفاتيح الرقمية (KDM) بسلاسة.",
-        "contact-title": "تواصل معنا",
-        "contact-text": "للاستفسارات، يمكنكم مراسلتنا عبر البريد الإلكتروني:",
-        "button-text": "English"
-      },
-      "en": {
-        "title": "Sumer Cinema – Digital Cinema Solutions",
-        "about-title": "About Us",
-        "about-text": "We are Sumer Cinema, offering full-scale digital cinema solutions — from projection and audio systems to content & KDM management at the highest level of quality.",
-        "services-title": "Our Services",
-        "service1-title": "Digital Cinema Projection Systems",
-        "service1-text": "Professional grade projectors and screen setups for large auditoriums.",
-        "service2-title": "Cinema Audio Systems",
-        "service2-text": "Immersive surround-sound experience built to international standards.",
-        "service3-title": "Content & KDM Management",
-        "service3-text": "Integrated solutions for smooth content playback and digital key management (KDM).",
-        "contact-title": "Contact Us",
-        "contact-text": "For inquiries, please email us at:",
-        "button-text": "العربية"
-      }
-    };
+<script>
+  const translations = {
+    "ar": {
+      "title": "Sumer Cinema – حلول السينما الرقمية",
+      "hero-text": "نحو تجربة عرض سينمائي لا تُضاهى",
+      "about-title": "من نحن",
+      "about-text": "نحن في سومر سينما نضع بين يديك أحدث التقنيات في عالم السينما الرقمية – من أنظمة العرض وصوت المحيط إلى إدارة المحتوى والمفاتيح الرقمية (KDM) – لنحول رؤيتك إلى واقع سينمائي مذهل.",
+      "services-title": "خدماتنا",
+      "service1-title": "أنظمة عرض الليزر السينمائي",
+      "service1-text": "أجهزة عرض عالية الدقة تعمل بتقنية الليزر، توفر صورة لامعة وواضحة حتى في أقوى الإضاءات.",
+      "service2-title": "تجربة صوت محيطية",
+      "service2-text": "نظام صوت محيطي متكامل يتناغم مع الصورة ليمنحك إحساساً سينمائياً حقيقياً.",
+      "service3-title": "إدارة المحتوى و KDM",
+      "service3-text": "حلول متقدمة لإدارة تشغيل الأفلام والمفاتيح الرقمية، مع تنبيهات تلقائية وانسيابية عالية.",
+      "contact-title": "تواصل معنا",
+      "contact-text": "للاستفسارات أو لطلب عرض، تواصل معنا عبر:",
+      "button-text": "English"
+    },
+    "en": {
+      "title": "Sumer Cinema – Digital Cinema Solutions",
+      "hero-text": "Elevating Your Cinema Experience",
+      "about-title": "About Us",
+      "about-text": "At Sumer Cinema, we deliver cutting-edge digital cinema solutions – from projection and immersive audio systems to content & KDM management – making your vision a cinematic reality.",
+      "services-title": "Our Services",
+      "service1-title": "Laser Cinema Projection Systems",
+      "service1-text": "High-precision laser projection systems delivering bright and crisp visuals even in challenging ambient light.",
+      "service2-title": "Immersive Surround Sound",
+      "service2-text": "A full-scale audio system synchronized with the visuals to give you a truly cinematic feeling.",
+      "service3-title": "Content & KDM Management",
+      "service3-text": "Advanced workflows for film playback and digital key (KDM) management, with automatic alerts and smooth operations.",
+      "contact-title": "Contact Us",
+      "contact-text": "For inquiries or to request a quote, reach us via:",
+      "button-text": "العربية"
+    }
+  };
 
-    let currentLang = "ar";
+  let currentLang = "ar";
 
-    document.getElementById("lang-toggle").addEventListener("click", function() {
-      currentLang = currentLang === "ar" ? "en" : "ar";
-      document.getElementById("title").textContent = translations[currentLang]["title"];
-      document.getElementById("about-title").textContent = translations[currentLang]["about-title"];
-      document.getElementById("about-text").textContent = translations[currentLang]["about-text"];
-      document.getElementById("services-title").textContent = translations[currentLang]["services-title"];
-      document.getElementById("service1-title").textContent = translations[currentLang]["service1-title"];
-      document.getElementById("service1-text").textContent = translations[currentLang]["service1-text"];
-      document.getElementById("service2-title").textContent = translations[currentLang]["service2-title"];
-      document.getElementById("service2-text").textContent = translations[currentLang]["service2-text"];
-      document.getElementById("service3-title").textContent = translations[currentLang]["service3-title"];
-      document.getElementById("service3-text").textContent = translations[currentLang]["service3-text"];
-      document.getElementById("contact-title").textContent = translations[currentLang]["contact-title"];
-      document.getElementById("contact-text").textContent = translations[currentLang]["contact-text"];
-      document.getElementById("lang-toggle").textContent = translations[currentLang]["button-text"];
-    });
-  </script>
+  document.getElementById("lang-toggle").addEventListener("click", () => {
+    currentLang = currentLang === "ar" ? "en" : "ar";
+    for (const id in translations[currentLang]) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = translations[currentLang][id];
+    }
+    document.getElementById("lang-toggle").textContent = translations[currentLang]["button-text"];
+  });
+</script>
+
 </body>
 </html>
