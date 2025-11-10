@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sumer Cinema - حلول السينما الرقمية</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* زر تغيير اللغة */
+        #lang-toggle {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #e4b200;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        /* تنسيق شعار الشركة */
+        header img {
+            width: 130px;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .services {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+
+        .service {
+            background: #fff;
+            padding: 20px;
+            margin: 10px;
+            width: 30%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .service img {
+            width: 100%;
+            height: auto;
+        }
+
+        .contact {
+            background: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .contact a {
+            color: #e4b200;
+            text-decoration: none;
+        }
+
+        /* تحسينات للهواتف المحمولة */
+        @media (max-width: 768px) {
+            .services {
+                flex-direction: column;
+                align-items: center;
+            }
+            .service {
+                width: 80%;
+            }
+            header img {
+                width: 90px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <button id="lang-toggle">English</button>
+    <img src="sumerlogo.png" alt="شعار سومر سينما">
+    <h1 id="title">Sumer Cinema - حلول السينما الرقمية</h1>
+</header>
+
+<div class="container">
+    <h2 id="about-title">من نحن</h2>
+    <p id="about-text">نحن شركة <strong>سومر سينما</strong>، نقدم حلولاً متكاملة في مجال السينما الرقمية، تشمل أنظمة العرض، والصوت، وإدارة المحتوى السينمائي بأحدث التقنيات العالمية.</p>
+
+    <h2 id="services-title">خدماتنا</h2>
+    <div class="services">
+        <div class="service">
+            <img src="cinema-projector.jpg" alt="أنظمة عرض السينما الرقمية">
+            <h3 id="service1-title">أنظمة عرض السينما الرقمية</h3>
+            <p id="service1-text">نوفر أجهزة عرض احترافية من أحدث الطرازات لتقديم تجربة سينمائية واقعية.</p>
+        </div>
+        <div class="service">
+            <img src="sound-system.jpg" alt="أنظمة الصوت السينمائي">
+            <h3 id="service2-title">أنظمة الصوت السينمائي</h3>
+            <p id="service2-text">نقدم أنظمة صوتية متكاملة لتوفير تجربة استماع غامرة ومطابقة للمعايير العالمية.</p>
+        </div>
+        <div class="service">
+            <img src="control-room.jpg" alt="إدارة وتشغيل المحتوى السينمائي">
+            <h3 id="service3-title">إدارة وتشغيل المحتوى السينمائي</h3>
+            <p id="service3-text">نوفر حلول إدارة وتشغيل KDM والمحتوى الرقمي لضمان سير العروض بسلاسة.</p>
+        </div>
+    </div>
+</div>
+
+<div class="contact">
+    <h2 id="contact-title">تواصل معنا</h2>
+    <p id="contact-text">للاستفسارات، يمكنكم مراسلتنا عبر البريد الإلكتروني:</p>
+    <p><a href="mailto:sumer.cinema@gmail.com">sumer.cinema@gmail.com</a></p>
+</div>
+
+<script>
+    const translations = {
+        "ar": {
+            "title": "Sumer Cinema - حلول السينما الرقمية",
+            "about-title": "من نحن",
+            "about-text": "نحن شركة سومر سينما، نقدم حلولاً متكاملة في مجال السينما الرقمية، تشمل أنظمة العرض، والصوت، وإدارة المحتوى السينمائي بأحدث التقنيات العالمية.",
+            "services-title": "خدماتنا",
+            "service1-title": "أنظمة عرض السينما الرقمية",
+            "service1-text": "نوفر أجهزة عرض احترافية من أحدث الطرازات لتقديم تجربة سينمائية واقعية.",
+            "service2-title": "أنظمة الصوت السينمائي",
+            "service2-text": "نقدم أنظمة صوتية متكاملة لتوفير تجربة استماع غامرة ومطابقة للمعايير العالمية.",
+            "service3-title": "إدارة وتشغيل المحتوى السينمائي",
+            "service3-text": "نوفر حلول إدارة وتشغيل KDM والمحتوى الرقمي لضمان سير العروض بسلاسة.",
+            "contact-title": "تواصل معنا",
+            "contact-text": "للاستفسارات، يمكنكم مراسلتنا عبر البريد الإلكتروني:",
+            "button-text": "English"
+        },
+        "en": {
+            "title": "Sumer Cinema - Digital Cinema Solutions",
+            "about-title": "About Us",
+            "about-text": "We are Sumer Cinema, providing comprehensive solutions in digital cinema, including projection systems, audio, and content management with cutting-edge technologies.",
+            "services-title": "Our Services",
+            "service1-title": "Digital Cinema Projection Systems",
+            "service1-text": "We provide professional-grade projectors offering a true cinematic experience.",
+            "service2-title": "Cinema Audio Systems",
+            "service2-text": "We deliver immersive, world-class audio systems for a powerful sound experience.",
+            "service3-title": "Cinema Content & KDM Management",
+            "service3-text": "We offer smart solutions for managing and operating KDM and digital cinema content smoothly.",
+            "contact-title": "Contact Us",
+            "contact-text": "For inquiries, you can reach us at:",
+            "button-text": "العربية"
+        }
+    };
+
+    let currentLang = "ar";
+
+    document.getElementById("lang-toggle").addEventListener("click", function() {
+        currentLang = currentLang === "ar" ? "en" : "ar";
+        document.getElementById("title").textContent = translations[currentLang]["title"];
+        document.getElementById("about-title").textContent = translations[currentLang]["about-title"];
+        document.getElementById("about-text").textContent = translations[currentLang]["about-text"];
+        document.getElementById("services-title").textContent = translations[currentLang]["services-title"];
+        document.getElementById("service1-title").textContent = translations[currentLang]["service1-title"];
+        document.getElementById("service1-text").textContent = translations[currentLang]["service1-text"];
+        document.getElementById("service2-title").textContent = translations[currentLang]["service2-title"];
+        document.getElementById("service2-text").textContent = translations[currentLang]["service2-text"];
+        document.getElementById("service3-title").textContent = translations[currentLang]["service3-title"];
+        document.getElementById("service3-text").textContent = translations[currentLang]["service3-text"];
+        document.getElementById("contact-title").textContent = translations[currentLang]["contact-title"];
+        document.getElementById("contact-text").textContent = translations[currentLang]["contact-text"];
+        document.getElementById("lang-toggle").textContent = translations[currentLang]["button-text"];
+    });
+</script>
+
+</body>
+</html>
