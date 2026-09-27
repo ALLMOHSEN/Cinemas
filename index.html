@@ -1,969 +1,729 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>ALMOHSEN</title>
+<title>ALMOHSEN — Cinematic Portfolio</title>
 
 <style>
 
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html,
-body {
-
-    width: 100%;
-
-    background: #000;
-
-    color: #fff;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    overflow-x: hidden;
+html,body{
+    width:100%;
+    background:#000;
+    color:white;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
 }
 
+/* =========================
+   MAIN SCROLL AREA
+========================= */
 
-/* =====================================================
-   SCROLL AREA
-===================================================== */
-
-.scroll-area {
-
-    /*
-       كلما زاد الرقم،
-       يصبح التحكم بالفيديو أكثر دقة.
-    */
-
-    height: 700vh;
-
-    position: relative;
+.scroll-container{
+    position:relative;
+    height:700vh;
 }
 
+/* =========================
+   FIXED VIDEO STAGE
+========================= */
 
-/* =====================================================
-   FIXED VIDEO SCREEN
-===================================================== */
+.stage{
+    position:sticky;
+    top:0;
+    left:0;
 
-.video-screen {
+    width:100%;
+    height:100vh;
 
-    position: sticky;
+    overflow:hidden;
 
-    top: 0;
-
-    width: 100%;
-
-    height: 100vh;
-
-    overflow: hidden;
-
-    background: #000;
+    background:#000;
 }
 
+/* VIDEO */
 
-/* =====================================================
-   VIDEO CANVAS
-===================================================== */
+#video{
+    position:absolute;
 
-#canvas {
+    width:1px;
+    height:1px;
 
-    position: absolute;
+    opacity:0.01;
 
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    display: block;
+    pointer-events:none;
 }
 
+/* CANVAS */
 
-/* =====================================================
-   CINEMATIC DARK OVERLAY
-===================================================== */
+#canvas{
+    position:absolute;
 
-.cinematic-overlay {
+    inset:0;
 
-    position: absolute;
+    width:100%;
+    height:100%;
 
-    inset: 0;
+    object-fit:cover;
 
-    pointer-events: none;
+    background:#000;
+}
+
+/* DARK CINEMATIC OVERLAY */
+
+.overlay{
+    position:absolute;
+    inset:0;
 
     background:
-
         linear-gradient(
-            to bottom,
-            rgba(0,0,0,.15),
-            transparent 40%,
-            rgba(0,0,0,.55)
+            180deg,
+            rgba(0,0,0,.35),
+            rgba(0,0,0,.05) 40%,
+            rgba(0,0,0,.75)
         );
 
+    pointer-events:none;
 }
 
+/* RED VIGNETTE */
 
-/* =====================================================
-   RED SCI-FI LIGHT
-===================================================== */
+.red-light{
+    position:absolute;
 
-.red-glow {
-
-    position: absolute;
-
-    right: -15%;
-
-    top: 0;
-
-    width: 45%;
-
-    height: 100%;
-
-    pointer-events: none;
+    inset:-20%;
 
     background:
         radial-gradient(
-            ellipse,
-            rgba(255,0,0,.15),
-            transparent 65%
+            circle at 50% 50%,
+            transparent 40%,
+            rgba(255,0,0,.18),
+            transparent 75%
         );
 
-    filter: blur(35px);
-
+    pointer-events:none;
 }
 
-
-/* =====================================================
+/* =========================
    HUD
-===================================================== */
+========================= */
 
-.hud {
+.hud{
+    position:absolute;
 
-    position: absolute;
+    top:25px;
+    left:25px;
 
-    top: 25px;
+    z-index:20;
 
-    left: 25px;
+    font-size:11px;
+    letter-spacing:2px;
 
-    direction: ltr;
+    color:#ff4d4d;
 
-    font-family: monospace;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    color:
-        rgba(255,70,70,.8);
+    line-height:1.8;
 
     text-shadow:
-        0 0 10px
-        rgba(255,0,0,.5);
-
-    line-height: 1.8;
-
+        0 0 10px red;
 }
 
+.hud .white{
+    color:white;
+}
 
-/* =====================================================
+/* =========================
    INTRO
-===================================================== */
+========================= */
 
-.intro {
+.intro{
+    position:absolute;
 
-    position: absolute;
+    top:50%;
+    left:50%;
 
-    inset: 0;
+    transform:translate(-50%,-50%);
 
-    display: flex;
+    text-align:center;
 
-    justify-content: center;
+    z-index:15;
 
-    align-items: center;
+    pointer-events:none;
 
-    text-align: center;
-
-    pointer-events: none;
-
-    transition:
-        opacity .4s ease;
+    transition:opacity .2s;
 }
 
+.intro h1{
+    font-size:clamp(40px,10vw,110px);
 
-.intro h1 {
+    letter-spacing:10px;
 
-    font-size:
-        clamp(55px, 13vw, 140px);
-
-    font-weight: 800;
-
-    letter-spacing: 6px;
+    color:white;
 
     text-shadow:
-
-        0 0 15px
-        rgba(255,255,255,.4),
-
-        0 0 40px
-        rgba(255,0,0,.35);
+        0 0 15px rgba(255,0,0,.7),
+        0 0 40px rgba(255,0,0,.5);
 }
 
+.intro p{
+    margin-top:15px;
 
-.intro p {
+    font-size:12px;
 
-    margin-top: 15px;
+    letter-spacing:6px;
 
-    font-size: 14px;
-
-    letter-spacing: 4px;
-
-    opacity: .65;
+    color:#ff3333;
 }
 
+/* =========================
+   SCROLL INDICATOR
+========================= */
 
-/* =====================================================
-   SOCIAL PANEL
-===================================================== */
+.scroll{
+    position:absolute;
 
-.social-panel {
+    bottom:25px;
+    left:50%;
 
-    position: absolute;
+    transform:translateX(-50%);
 
-    right: 0;
+    z-index:20;
 
-    top: 50%;
+    font-size:10px;
 
-    transform:
-        translateY(-50%);
+    letter-spacing:4px;
 
-    width:
-        min(430px, 92vw);
+    color:white;
 
-    padding: 15px;
+    opacity:.7;
+}
 
-    display: flex;
+.scroll::after{
+    content:"";
 
-    flex-direction: column;
+    display:block;
 
-    gap: 13px;
+    width:1px;
+    height:45px;
+
+    margin:10px auto 0;
+
+    background:#ff2020;
+
+    animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:.2;
+        transform:scaleY(.5);
+    }
+
+    50%{
+        opacity:1;
+        transform:scaleY(1);
+    }
 
 }
 
+/* =========================
+   SOCIAL CARDS
+========================= */
 
-/* =====================================================
-   SOCIAL CARD
-===================================================== */
+.social-container{
 
-.social {
+    position:absolute;
 
-    position: relative;
+    top:50%;
+    right:0;
 
-    display: flex;
+    transform:translateY(-50%);
 
-    align-items: center;
+    width:min(430px,90vw);
 
-    gap: 15px;
+    z-index:30;
 
-    min-height: 72px;
+    pointer-events:none;
+}
 
-    padding: 15px 20px;
+/* CARD */
 
-    text-decoration: none;
+.card{
 
-    color: white;
+    position:absolute;
 
-    border-radius:
-        20px 0 0 20px;
+    right:-500px;
 
+    width:min(390px,85vw);
 
-    /*
-       GLASS
-    */
+    padding:22px;
+
+    margin-bottom:18px;
+
+    border:1px solid rgba(255,50,50,.65);
+
+    border-right:3px solid #ff2020;
+
+    border-radius:18px;
 
     background:
-
         linear-gradient(
             135deg,
-            rgba(255,20,20,.35),
-            rgba(50,0,0,.18)
+            rgba(80,0,0,.55),
+            rgba(15,0,0,.75)
         );
 
+    backdrop-filter:blur(18px);
 
-    border:
-        1px solid
-        rgba(255,80,80,.55);
-
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
+    -webkit-backdrop-filter:blur(18px);
 
     box-shadow:
-
-        inset 0 0 30px
-        rgba(255,0,0,.1),
-
-        0 15px 40px
-        rgba(0,0,0,.5),
-
-        -5px 0 25px
-        rgba(255,0,0,.15);
-
-
-    /*
-       يبدأ خارج الشاشة
-    */
-
-    opacity: 0;
-
-    transform:
-        translateX(120%);
-
+        0 0 25px rgba(255,0,0,.15),
+        inset 0 0 25px rgba(255,0,0,.06);
 
     transition:
+        right .8s cubic-bezier(.16,1,.3,1),
+        opacity .5s;
 
-        opacity .55s ease,
-
-        transform .8s
-        cubic-bezier(
-            .16,
-            1,
-            .3,
-            1
-        );
-
-
-    overflow: hidden;
+    opacity:0;
 }
 
+/* SHOW CARD */
 
-/* =====================================================
-   RED EDGE
-===================================================== */
+.card.active{
+    right:30px;
+    opacity:1;
+}
 
-.social::before {
+/* CARD CONTENT */
 
-    content: "";
+.card-top{
+    display:flex;
 
-    position: absolute;
+    align-items:center;
 
-    right: 0;
+    gap:15px;
+}
 
-    top: 0;
+.icon{
 
-    width: 4px;
+    width:50px;
+    height:50px;
 
-    height: 100%;
+    display:flex;
 
-    background:
+    align-items:center;
+    justify-content:center;
 
-        linear-gradient(
-            to bottom,
-            transparent,
-            #ff1b1b,
-            transparent
-        );
+    border-radius:12px;
 
+    background:rgba(255,0,0,.12);
+
+    border:1px solid rgba(255,0,0,.5);
+
+    color:#ff3333;
+
+    font-size:20px;
 
     box-shadow:
-
-        0 0 18px
-        #ff0000;
+        0 0 15px rgba(255,0,0,.2);
 }
 
+.card h2{
 
-/* =====================================================
-   SCAN LIGHT
-===================================================== */
+    font-size:17px;
 
-.social::after {
+    letter-spacing:2px;
 
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -120%;
-
-    width: 80%;
-
-    height: 100%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.14),
-            transparent
-        );
-
-    transform:
-        skewX(-20deg);
-
-    animation:
-        scan 4s infinite;
+    margin-bottom:5px;
 }
 
+.card p{
 
-@keyframes scan {
+    color:#aaa;
 
-    0% {
-        left: -120%;
+    font-size:12px;
+
+    letter-spacing:1px;
+}
+
+.card a{
+
+    display:block;
+
+    margin-top:15px;
+
+    color:#ff4444;
+
+    text-decoration:none;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+}
+
+/* SCAN LINE */
+
+.card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    top:0;
+
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #ff2222,
+        transparent
+    );
+
+    animation:scan 3s linear infinite;
+}
+
+@keyframes scan{
+
+    0%{
+        transform:translateY(0);
+        opacity:0;
     }
 
-    30% {
-        left: 140%;
+    20%{
+        opacity:1;
     }
 
-    100% {
-        left: 140%;
+    100%{
+        transform:translateY(120px);
+        opacity:0;
     }
 
 }
 
+/* =========================
+   BOTTOM PROGRESS
+========================= */
 
-/* =====================================================
-   SHOW SOCIAL
-===================================================== */
+.progress{
 
-.social.show {
+    position:absolute;
 
-    opacity: 1;
+    bottom:0;
+    left:0;
 
-    transform:
-        translateX(0);
+    height:3px;
 
-}
+    width:0%;
 
-
-/* =====================================================
-   ICON
-===================================================== */
-
-.icon {
-
-    width: 44px;
-
-    height: 44px;
-
-    min-width: 44px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 13px;
-
-    background:
-
-        rgba(255,0,0,.22);
-
-    border:
-
-        1px solid
-        rgba(255,100,100,.45);
-
-    font-size: 20px;
+    background:#ff2020;
 
     box-shadow:
+        0 0 15px red;
 
-        inset 0 0 15px
-        rgba(255,0,0,.15),
-
-        0 0 18px
-        rgba(255,0,0,.15);
-
+    z-index:50;
 }
 
-
-/* =====================================================
-   TEXT
-===================================================== */
-
-.social-info {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-
-}
-
-
-.social-name {
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-}
-
-
-.social-user {
-
-    font-size: 12px;
-
-    opacity: .6;
-
-    direction: ltr;
-
-    text-align: right;
-
-}
-
-
-/* =====================================================
-   SCROLL INDICATOR
-===================================================== */
-
-.scroll-indicator {
-
-    position: absolute;
-
-    bottom: 25px;
-
-    left: 50%;
-
-    transform:
-        translateX(-50%);
-
-    text-align: center;
-
-    font-size: 10px;
-
-    letter-spacing: 4px;
-
-    opacity: .7;
-
-    transition:
-        opacity .4s ease;
-
-}
-
-
-.scroll-indicator span {
-
-    display: block;
-
-    margin-top: 8px;
-
-    font-size: 22px;
-
-    animation:
-        arrow 1.5s infinite;
-
-}
-
-
-@keyframes arrow {
-
-    0%,
-    100% {
-        transform:
-            translateY(0);
-    }
-
-    50% {
-        transform:
-            translateY(8px);
-    }
-
-}
-
-
-/* =====================================================
+/* =========================
    END
-===================================================== */
+========================= */
 
-.end {
+.end{
 
-    height: 100vh;
+    height:100vh;
 
-    display: flex;
+    display:flex;
 
-    align-items: center;
+    align-items:center;
 
-    justify-content: center;
+    justify-content:center;
 
-    text-align: center;
+    background:#050505;
 
-    background:
-        radial-gradient(
-            circle,
-            #200000,
-            #000 70%
-        );
-
+    text-align:center;
 }
 
+.end h1{
 
-.end h2 {
+    font-size:40px;
 
-    font-size:
-        clamp(35px, 8vw, 80px);
+    letter-spacing:8px;
 
-    letter-spacing: 5px;
+    color:#ff2020;
 
+    text-shadow:
+        0 0 20px red;
 }
 
+/* MOBILE */
 
-.end p {
+@media(max-width:600px){
 
-    margin-top: 15px;
-
-    opacity: .6;
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media(max-width:600px) {
-
-    .social-panel {
-
-        width: 94vw;
-
-        padding: 8px;
-
-        gap: 9px;
-
+    .hud{
+        top:15px;
+        left:15px;
+        font-size:9px;
     }
 
-
-    .social {
-
-        min-height: 62px;
-
-        padding: 11px 14px;
-
+    .intro h1{
+        letter-spacing:5px;
     }
 
-
-    .icon {
-
-        width: 38px;
-
-        height: 38px;
-
-        min-width: 38px;
-
+    .social-container{
+        top:auto;
+        bottom:70px;
+        transform:none;
     }
 
+    .card.active{
+        right:15px;
+    }
 
-    .hud {
-
-        top: 15px;
-
-        left: 15px;
-
-        font-size: 8px;
-
+    .card{
+        width:calc(100vw - 30px);
     }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     VIDEO SOURCE
-===================================================== -->
+<!-- =================================
+     SCROLL SECTION
+================================= -->
 
-<video
-    id="video"
-    src="12.mp4"
-    preload="auto"
-    muted
-    playsinline
-    webkit-playsinline
-    style="display:none;">
-
-</video>
+<div class="scroll-container" id="scrollContainer">
 
 
+    <!-- FIXED STAGE -->
 
-<!-- =====================================================
-     SCROLL AREA
-===================================================== -->
-
-<section
-    class="scroll-area"
-    id="scrollArea">
+    <div class="stage">
 
 
-    <!-- =================================================
-         STICKY SCREEN
-    ================================================== -->
+        <!-- VIDEO SOURCE -->
 
-    <div class="video-screen">
-
-
-        <!-- VIDEO -->
-
-        <canvas
-            id="canvas">
-        </canvas>
+        <video
+            id="video"
+            src="12.mp4"
+            preload="auto"
+            muted
+            playsinline
+            crossorigin="anonymous">
+        </video>
 
 
-        <!-- OVERLAY -->
+        <!-- CANVAS -->
 
-        <div
-            class="cinematic-overlay">
-        </div>
+        <canvas id="canvas"></canvas>
 
 
-        <div
-            class="red-glow">
-        </div>
+        <!-- VISUAL EFFECTS -->
+
+        <div class="overlay"></div>
+
+        <div class="red-light"></div>
 
 
-        <!-- =================================================
-             HUD
-        ================================================== -->
+        <!-- HUD -->
 
         <div class="hud">
 
-            <div>
-                ALMOHSEN // SYSTEM
+            <div>ALMOHSEN // SYSTEM</div>
+
+            <div class="white">
+                VIDEO : 12.MP4
             </div>
 
             <div>
-                VIDEO_12.MP4
+                FRAME : <span id="frame">0000</span>
             </div>
 
-            <div id="frame">
-                FRAME: 0000
-            </div>
-
-            <div id="progress">
-                PROGRESS: 0%
+            <div>
+                PROGRESS : <span id="percent">0</span>%
             </div>
 
         </div>
 
 
+        <!-- INTRO -->
 
-        <!-- =================================================
-             INTRO
-        ================================================== -->
+        <div class="intro" id="intro">
 
-        <div
-            class="intro"
-            id="intro">
+            <h1>ALMOHSEN</h1>
 
-            <div>
-
-                <h1>
-                    ALMOHSEN
-                </h1>
-
-                <p>
-                    SCROLL TO EXPLORE
-                </p>
-
-            </div>
+            <p>SCROLL TO EXPERIENCE</p>
 
         </div>
 
 
+        <!-- SOCIAL CARDS -->
 
-        <!-- =================================================
-             SOCIAL MEDIA
-        ================================================== -->
-
-        <div class="social-panel">
+        <div class="social-container">
 
 
             <!-- INSTAGRAM -->
 
-            <a
-                class="social"
-                data-start="0.20"
-                href="https://instagram.com/YOUR_USERNAME"
-                target="_blank"
-                rel="noopener">
+            <div
+                class="card"
+                data-start="0.18">
 
-                <div class="icon">
-                    ◎
-                </div>
+                <div class="card-top">
 
-                <div class="social-info">
-
-                    <div class="social-name">
-                        Instagram
+                    <div class="icon">
+                        ◎
                     </div>
 
-                    <div class="social-user">
-                        @YOUR_USERNAME
+                    <div>
+
+                        <h2>INSTAGRAM</h2>
+
+                        <p>@YOUR_USERNAME</p>
+
                     </div>
 
                 </div>
 
-            </a>
+                <a href="#" target="_blank">
+                    OPEN PROFILE →
+                </a>
 
+            </div>
 
 
             <!-- TIKTOK -->
 
-            <a
-                class="social"
-                data-start="0.38"
-                href="https://tiktok.com/@YOUR_USERNAME"
-                target="_blank"
-                rel="noopener">
+            <div
+                class="card"
+                data-start="0.38">
 
-                <div class="icon">
-                    ♪
-                </div>
+                <div class="card-top">
 
-                <div class="social-info">
-
-                    <div class="social-name">
-                        TikTok
+                    <div class="icon">
+                        ♪
                     </div>
 
-                    <div class="social-user">
-                        @YOUR_USERNAME
+                    <div>
+
+                        <h2>TIKTOK</h2>
+
+                        <p>@YOUR_USERNAME</p>
+
                     </div>
 
                 </div>
 
-            </a>
+                <a href="#" target="_blank">
+                    OPEN PROFILE →
+                </a>
 
+            </div>
 
 
             <!-- FACEBOOK -->
 
-            <a
-                class="social"
-                data-start="0.56"
-                href="https://facebook.com/YOUR_USERNAME"
-                target="_blank"
-                rel="noopener">
+            <div
+                class="card"
+                data-start="0.58">
 
-                <div class="icon">
-                    f
-                </div>
+                <div class="card-top">
 
-                <div class="social-info">
-
-                    <div class="social-name">
-                        Facebook
+                    <div class="icon">
+                        f
                     </div>
 
-                    <div class="social-user">
-                        YOUR_USERNAME
+                    <div>
+
+                        <h2>FACEBOOK</h2>
+
+                        <p>YOUR NAME</p>
+
                     </div>
 
                 </div>
 
-            </a>
+                <a href="#" target="_blank">
+                    OPEN PROFILE →
+                </a>
 
+            </div>
 
 
             <!-- YOUTUBE -->
 
-            <a
-                class="social"
-                data-start="0.74"
-                href="https://youtube.com/@YOUR_USERNAME"
-                target="_blank"
-                rel="noopener">
+            <div
+                class="card"
+                data-start="0.78">
 
-                <div class="icon">
-                    ▶
-                </div>
+                <div class="card-top">
 
-                <div class="social-info">
-
-                    <div class="social-name">
-                        YouTube
+                    <div class="icon">
+                        ▶
                     </div>
 
-                    <div class="social-user">
-                        @YOUR_USERNAME
+                    <div>
+
+                        <h2>YOUTUBE</h2>
+
+                        <p>YOUR CHANNEL</p>
+
                     </div>
 
                 </div>
 
-            </a>
+                <a href="#" target="_blank">
+                    OPEN CHANNEL →
+                </a>
+
+            </div>
 
 
         </div>
 
 
+        <!-- SCROLL -->
 
-        <!-- =================================================
-             SCROLL
-        ================================================== -->
-
-        <div
-            class="scroll-indicator"
-            id="scrollIndicator">
+        <div class="scroll">
 
             SCROLL
 
-            <span>
-                ↓
-            </span>
+        </div>
 
+
+        <!-- PROGRESS -->
+
+        <div
+            class="progress"
+            id="progressBar">
         </div>
 
 
     </div>
 
-</section>
+</div>
 
 
-
-<!-- =====================================================
-     END
-===================================================== -->
+<!-- END -->
 
 <section class="end">
 
-    <div>
-
-        <h2>
-            ALMOHSEN
-        </h2>
-
-        <p>
-            Thank you for visiting
-        </p>
-
-    </div>
+    <h1>
+        THANK YOU
+    </h1>
 
 </section>
 
@@ -971,141 +731,100 @@ body {
 
 <script>
 
-/* =====================================================
-   ELEMENTS
-===================================================== */
+const container =
+    document.getElementById("scrollContainer");
 
 const video =
-    document.getElementById(
-        "video"
-    );
+    document.getElementById("video");
 
 const canvas =
-    document.getElementById(
-        "canvas"
-    );
+    document.getElementById("canvas");
 
 const ctx =
     canvas.getContext("2d");
 
-const scrollArea =
-    document.getElementById(
-        "scrollArea"
-    );
+const frameText =
+    document.getElementById("frame");
 
-const videoScreen =
-    document.querySelector(
-        ".video-screen"
-    );
+const percentText =
+    document.getElementById("percent");
+
+const progressBar =
+    document.getElementById("progressBar");
 
 const intro =
-    document.getElementById(
-        "intro"
-    );
+    document.getElementById("intro");
 
-const socials =
-    document.querySelectorAll(
-        ".social"
-    );
+const cards =
+    document.querySelectorAll(".card");
 
-const frame =
-    document.getElementById(
-        "frame"
-    );
-
-const progressText =
-    document.getElementById(
-        "progress"
-    );
-
-const scrollIndicator =
-    document.getElementById(
-        "scrollIndicator"
-    );
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
-
-let ready = false;
 
 let duration = 0;
 
+let ready = false;
+
 let lastTime = -1;
 
-let animation = false;
+let ticking = false;
 
 
-/* =====================================================
-   CANVAS
-===================================================== */
+/* =========================
+   CANVAS SIZE
+========================= */
 
-function resizeCanvas() {
-
-    const dpr =
-        Math.min(
-            window.devicePixelRatio || 1,
-            2
-        );
-
+function resizeCanvas(){
 
     canvas.width =
-        Math.floor(
-            window.innerWidth * dpr
-        );
-
+        window.innerWidth;
 
     canvas.height =
-        Math.floor(
-            window.innerHeight * dpr
-        );
-
-
-    canvas.style.width =
-        window.innerWidth + "px";
-
-
-    canvas.style.height =
-        window.innerHeight + "px";
-
-
-    ctx.setTransform(
-        dpr,
-        0,
-        0,
-        dpr,
-        0,
-        0
-    );
-
+        window.innerHeight;
 
     drawFrame();
 
 }
 
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
 
-/* =====================================================
-   DRAW FRAME
-===================================================== */
 
-function drawFrame() {
+/* =========================
+   VIDEO LOADED
+========================= */
 
-    if (
+video.addEventListener(
+    "loadedmetadata",
+    function(){
+
+        duration =
+            video.duration;
+
+        ready = true;
+
+        resizeCanvas();
+
+        update();
+
+    }
+);
+
+
+/* =========================
+   DRAW VIDEO
+========================= */
+
+function drawFrame(){
+
+    if(
         !ready ||
-        !video.videoWidth
-    ) {
+        video.readyState < 2
+    ){
 
         return;
 
     }
-
-
-    const cw =
-        window.innerWidth;
-
-    const ch =
-        window.innerHeight;
 
 
     const vw =
@@ -1115,9 +834,21 @@ function drawFrame() {
         video.videoHeight;
 
 
-    /*
-       COVER
-    */
+    if(!vw || !vh){
+
+        return;
+
+    }
+
+
+    const cw =
+        canvas.width;
+
+    const ch =
+        canvas.height;
+
+
+    /* COVER */
 
     const scale =
         Math.max(
@@ -1129,14 +860,12 @@ function drawFrame() {
     const width =
         vw * scale;
 
-
     const height =
         vh * scale;
 
 
     const x =
         (cw - width) / 2;
-
 
     const y =
         (ch - height) / 2;
@@ -1161,54 +890,9 @@ function drawFrame() {
 }
 
 
-/* =====================================================
-   VIDEO READY
-===================================================== */
-
-function videoLoaded() {
-
-    if (ready)
-        return;
-
-
-    if (!video.duration)
-        return;
-
-
-    duration =
-        video.duration;
-
-
-    ready =
-        true;
-
-
-    resizeCanvas();
-
-
-    update();
-
-}
-
-
-/* =====================================================
-   VIDEO EVENTS
-===================================================== */
-
-video.addEventListener(
-    "loadedmetadata",
-    videoLoaded
-);
-
-video.addEventListener(
-    "loadeddata",
-    videoLoaded
-);
-
-video.addEventListener(
-    "canplay",
-    videoLoaded
-);
+/* =========================
+   VIDEO SEEK
+========================= */
 
 video.addEventListener(
     "seeked",
@@ -1216,79 +900,67 @@ video.addEventListener(
 );
 
 
-/* =====================================================
-   MAIN SCROLL
-===================================================== */
+/* =========================
+   MAIN SCROLL FUNCTION
+========================= */
 
-function update() {
+function update(){
 
-    animation = false;
+    ticking = false;
 
 
-    if (
-        !ready ||
-        duration <= 0
-    ) {
+    if(!ready){
 
         return;
 
     }
 
 
-    /*
-       مكان القسم بالنسبة للشاشة
-    */
-
     const rect =
-        scrollArea.getBoundingClientRect();
+        container.getBoundingClientRect();
 
 
-    /*
-       مقدار Scroll داخل القسم
-    */
-
-    const maxScroll =
-        scrollArea.offsetHeight -
+    const total =
+        container.offsetHeight -
         window.innerHeight;
 
 
-    let p =
-        -rect.top /
-        maxScroll;
+    let progress =
+        -rect.top / total;
 
 
-    /*
-       0 → 1
-    */
-
-    p =
+    progress =
         Math.max(
             0,
             Math.min(
                 1,
-                p
+                progress
             )
         );
 
 
-    /* =================================================
-       VIDEO FRAME
-    ================================================= */
+    /* VIDEO TIME */
 
     const targetTime =
-        p * duration;
+        progress *
+        Math.max(
+            0,
+            duration - 0.05
+        );
 
 
-    if (
+    /*
+       Only seek when time changed
+    */
+
+    if(
         Math.abs(
-            targetTime -
-            lastTime
-        ) > 0.012
-    ) {
+            targetTime - lastTime
+        ) > 0.01
+    ){
 
         lastTime =
             targetTime;
-
 
         video.currentTime =
             targetTime;
@@ -1296,72 +968,55 @@ function update() {
     }
 
 
-    /* =================================================
-       FRAME NUMBER
-    ================================================= */
+    /* HUD */
 
-    /*
-       الرقم تقريبي حسب 30FPS
-    */
-
-    const fps = 30;
-
-    const currentFrame =
+    const fakeFrame =
         Math.floor(
-            targetTime * fps
+            targetTime * 30
         );
 
 
-    frame.textContent =
-        "FRAME: " +
-        String(
-            currentFrame
-        ).padStart(
-            4,
-            "0"
+    frameText.textContent =
+        String(fakeFrame)
+        .padStart(4,"0");
+
+
+    const percent =
+        Math.floor(
+            progress * 100
         );
 
 
-    /* =================================================
-       PROGRESS
-    ================================================= */
-
-    progressText.textContent =
-        "PROGRESS: " +
-        Math.round(
-            p * 100
-        ) +
-        "%";
+    percentText.textContent =
+        percent;
 
 
-    /* =================================================
-       INTRO
-    ================================================= */
+    progressBar.style.width =
+        percent + "%";
 
-    if (p < .15) {
+
+    /* INTRO */
+
+    if(progress > .08){
+
+        intro.style.opacity = "0";
+
+    }else{
 
         intro.style.opacity =
             String(
-                1 -
-                p / .15
+                1 - progress / .08
             );
 
     }
 
-    else {
 
-        intro.style.opacity =
-            "0";
+    /* =========================
+       SOCIAL CARDS
+    ========================= */
 
-    }
-
-
-    /* =================================================
-       SOCIALS
-    ================================================= */
-
-    socials.forEach(
-        function(card) {
+    cards.forEach(
+        function(card){
 
             const start =
                 parseFloat(
@@ -1369,18 +1024,21 @@ function update() {
                 );
 
 
-            if (p >= start) {
+            /*
+              تظهر البطاقة عند الوصول
+              إلى النسبة المحددة
+            */
+
+            if(progress >= start){
 
                 card.classList.add(
-                    "show"
+                    "active"
                 );
 
-            }
-
-            else {
+            }else{
 
                 card.classList.remove(
-                    "show"
+                    "active"
                 );
 
             }
@@ -1388,86 +1046,43 @@ function update() {
         }
     );
 
-
-    /* =================================================
-       SCROLL INDICATOR
-    ================================================= */
-
-    if (p > .08) {
-
-        scrollIndicator.style.opacity =
-            "0";
-
-    }
-
-    else {
-
-        scrollIndicator.style.opacity =
-            ".7";
-
-    }
-
 }
 
 
-/* =====================================================
-   SCROLL EVENT
-===================================================== */
+/* =========================
+   SCROLL
+========================= */
 
 window.addEventListener(
     "scroll",
-    function() {
+    function(){
 
-        if (!animation) {
+        if(!ticking){
 
-            animation =
-                requestAnimationFrame(
-                    update
-                );
+            requestAnimationFrame(
+                update
+            );
+
+            ticking = true;
 
         }
 
     },
     {
-        passive: true
+        passive:true
     }
 );
 
 
-/* =====================================================
-   RESIZE
-===================================================== */
-
-window.addEventListener(
-    "resize",
-    resizeCanvas
-);
-
-
-/* =====================================================
-   ERROR
-===================================================== */
-
-video.addEventListener(
-    "error",
-    function() {
-
-        console.error(
-            "Cannot load 12.mp4"
-        );
-
-    }
-);
-
-
-/* =====================================================
-   LOAD
-===================================================== */
+/* =========================
+   START
+========================= */
 
 video.load();
+
+resizeCanvas();
 
 </script>
 
 </body>
-
 </html>
