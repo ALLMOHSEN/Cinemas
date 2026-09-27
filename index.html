@@ -14,41 +14,53 @@
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
+    min-height:100%;
     background:#000;
     color:white;
     font-family:Arial, sans-serif;
     overflow-x:hidden;
 }
 
-/* =========================
-   MAIN SCROLL AREA
-========================= */
+/* =================================
+   SCROLL AREA
+================================= */
 
 .scroll-container{
     position:relative;
     height:700vh;
+    width:100%;
+    z-index:10;
+    pointer-events:none;
 }
 
-/* =========================
-   FIXED VIDEO STAGE
-========================= */
+/* =================================
+   FIXED VIDEO BACKGROUND
+================================= */
 
 .stage{
-    position:sticky;
+    position:fixed;
+
     top:0;
     left:0;
+    right:0;
+    bottom:0;
 
-    width:100%;
+    width:100vw;
     height:100vh;
 
     overflow:hidden;
 
     background:#000;
+
+    z-index:0;
 }
 
-/* VIDEO */
+/* =================================
+   HIDDEN VIDEO SOURCE
+================================= */
 
 #video{
     position:absolute;
@@ -61,25 +73,31 @@ html,body{
     pointer-events:none;
 }
 
-/* CANVAS */
+/* =================================
+   VIDEO CANVAS
+================================= */
 
 #canvas{
     position:absolute;
 
-    inset:0;
+    top:0;
+    left:0;
 
     width:100%;
     height:100%;
 
-    object-fit:cover;
-
     background:#000;
+
+    z-index:1;
 }
 
-/* DARK CINEMATIC OVERLAY */
+/* =================================
+   DARK OVERLAY
+================================= */
 
 .overlay{
     position:absolute;
+
     inset:0;
 
     background:
@@ -90,10 +108,14 @@ html,body{
             rgba(0,0,0,.75)
         );
 
+    z-index:2;
+
     pointer-events:none;
 }
 
-/* RED VIGNETTE */
+/* =================================
+   RED CINEMATIC LIGHT
+================================= */
 
 .red-light{
     position:absolute;
@@ -108,22 +130,25 @@ html,body{
             transparent 75%
         );
 
+    z-index:3;
+
     pointer-events:none;
 }
 
-/* =========================
+/* =================================
    HUD
-========================= */
+================================= */
 
 .hud{
-    position:absolute;
+    position:fixed;
 
     top:25px;
     left:25px;
 
-    z-index:20;
+    z-index:100;
 
     font-size:11px;
+
     letter-spacing:2px;
 
     color:#ff4d4d;
@@ -132,27 +157,30 @@ html,body{
 
     text-shadow:
         0 0 10px red;
+
+    pointer-events:none;
 }
 
 .hud .white{
     color:white;
 }
 
-/* =========================
+/* =================================
    INTRO
-========================= */
+================================= */
 
 .intro{
-    position:absolute;
+    position:fixed;
 
     top:50%;
     left:50%;
 
-    transform:translate(-50%,-50%);
+    transform:
+        translate(-50%,-50%);
 
     text-align:center;
 
-    z-index:15;
+    z-index:100;
 
     pointer-events:none;
 
@@ -160,7 +188,9 @@ html,body{
 }
 
 .intro h1{
-    font-size:clamp(40px,10vw,110px);
+
+    font-size:
+        clamp(40px,10vw,110px);
 
     letter-spacing:10px;
 
@@ -172,6 +202,7 @@ html,body{
 }
 
 .intro p{
+
     margin-top:15px;
 
     font-size:12px;
@@ -181,19 +212,21 @@ html,body{
     color:#ff3333;
 }
 
-/* =========================
+/* =================================
    SCROLL INDICATOR
-========================= */
+================================= */
 
 .scroll{
-    position:absolute;
+
+    position:fixed;
 
     bottom:25px;
     left:50%;
 
-    transform:translateX(-50%);
+    transform:
+        translateX(-50%);
 
-    z-index:20;
+    z-index:100;
 
     font-size:10px;
 
@@ -202,14 +235,18 @@ html,body{
     color:white;
 
     opacity:.7;
+
+    pointer-events:none;
 }
 
 .scroll::after{
+
     content:"";
 
     display:block;
 
     width:1px;
+
     height:45px;
 
     margin:10px auto 0;
@@ -221,7 +258,8 @@ html,body{
 
 @keyframes pulse{
 
-    0%,100%{
+    0%,
+    100%{
         opacity:.2;
         transform:scaleY(.5);
     }
@@ -233,27 +271,31 @@ html,body{
 
 }
 
-/* =========================
-   SOCIAL CARDS
-========================= */
+/* =================================
+   SOCIAL CONTAINER
+================================= */
 
 .social-container{
 
-    position:absolute;
+    position:fixed;
 
     top:50%;
     right:0;
 
-    transform:translateY(-50%);
+    transform:
+        translateY(-50%);
 
-    width:min(430px,90vw);
+    width:
+        min(430px,90vw);
 
-    z-index:30;
+    z-index:200;
 
     pointer-events:none;
 }
 
-/* CARD */
+/* =================================
+   SOCIAL CARD
+================================= */
 
 .card{
 
@@ -261,15 +303,18 @@ html,body{
 
     right:-500px;
 
-    width:min(390px,85vw);
+    width:
+        min(390px,85vw);
 
     padding:22px;
 
     margin-bottom:18px;
 
-    border:1px solid rgba(255,50,50,.65);
+    border:
+        1px solid rgba(255,50,50,.65);
 
-    border-right:3px solid #ff2020;
+    border-right:
+        3px solid #ff2020;
 
     border-radius:18px;
 
@@ -280,9 +325,11 @@ html,body{
             rgba(15,0,0,.75)
         );
 
-    backdrop-filter:blur(18px);
+    backdrop-filter:
+        blur(18px);
 
-    -webkit-backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:
+        blur(18px);
 
     box-shadow:
         0 0 25px rgba(255,0,0,.15),
@@ -293,24 +340,37 @@ html,body{
         opacity .5s;
 
     opacity:0;
+
+    pointer-events:auto;
 }
 
-/* SHOW CARD */
+/* =================================
+   CARD ACTIVE
+================================= */
 
 .card.active{
+
     right:30px;
+
     opacity:1;
 }
 
-/* CARD CONTENT */
+/* =================================
+   CARD TOP
+================================= */
 
 .card-top{
+
     display:flex;
 
     align-items:center;
 
     gap:15px;
 }
+
+/* =================================
+   ICON
+================================= */
 
 .icon{
 
@@ -324,9 +384,11 @@ html,body{
 
     border-radius:12px;
 
-    background:rgba(255,0,0,.12);
+    background:
+        rgba(255,0,0,.12);
 
-    border:1px solid rgba(255,0,0,.5);
+    border:
+        1px solid rgba(255,0,0,.5);
 
     color:#ff3333;
 
@@ -335,6 +397,10 @@ html,body{
     box-shadow:
         0 0 15px rgba(255,0,0,.2);
 }
+
+/* =================================
+   CARD TITLE
+================================= */
 
 .card h2{
 
@@ -354,6 +420,10 @@ html,body{
     letter-spacing:1px;
 }
 
+/* =================================
+   CARD LINK
+================================= */
+
 .card a{
 
     display:block;
@@ -369,7 +439,9 @@ html,body{
     letter-spacing:2px;
 }
 
-/* SCAN LINE */
+/* =================================
+   SCAN EFFECT
+================================= */
 
 .card::after{
 
@@ -384,20 +456,24 @@ html,body{
 
     height:1px;
 
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #ff2222,
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ff2222,
+            transparent
+        );
 
-    animation:scan 3s linear infinite;
+    animation:
+        scan 3s linear infinite;
 }
 
 @keyframes scan{
 
     0%{
-        transform:translateY(0);
+        transform:
+            translateY(0);
+
         opacity:0;
     }
 
@@ -406,19 +482,21 @@ html,body{
     }
 
     100%{
-        transform:translateY(120px);
+        transform:
+            translateY(120px);
+
         opacity:0;
     }
 
 }
 
-/* =========================
-   BOTTOM PROGRESS
-========================= */
+/* =================================
+   PROGRESS BAR
+================================= */
 
 .progress{
 
-    position:absolute;
+    position:fixed;
 
     bottom:0;
     left:0;
@@ -432,14 +510,18 @@ html,body{
     box-shadow:
         0 0 15px red;
 
-    z-index:50;
+    z-index:300;
 }
 
-/* =========================
-   END
-========================= */
+/* =================================
+   END SECTION
+================================= */
 
 .end{
+
+    position:relative;
+
+    z-index:20;
 
     height:100vh;
 
@@ -452,6 +534,8 @@ html,body{
     background:#050505;
 
     text-align:center;
+
+    pointer-events:auto;
 }
 
 .end h1{
@@ -466,32 +550,43 @@ html,body{
         0 0 20px red;
 }
 
-/* MOBILE */
+/* =================================
+   MOBILE
+================================= */
 
 @media(max-width:600px){
 
     .hud{
+
         top:15px;
         left:15px;
+
         font-size:9px;
     }
 
     .intro h1{
+
         letter-spacing:5px;
     }
 
     .social-container{
+
         top:auto;
+
         bottom:70px;
+
         transform:none;
     }
 
     .card.active{
+
         right:15px;
     }
 
     .card{
-        width:calc(100vw - 30px);
+
+        width:
+            calc(100vw - 30px);
     }
 
 }
@@ -504,220 +599,271 @@ html,body{
 
 
 <!-- =================================
-     SCROLL SECTION
+     FIXED VIDEO BACKGROUND
 ================================= -->
 
-<div class="scroll-container" id="scrollContainer">
+<div class="stage">
+
+    <!-- VIDEO -->
+    <video
+        id="video"
+        src="12.mp4"
+        preload="auto"
+        muted
+        playsinline>
+    </video>
+
+    <!-- CANVAS -->
+    <canvas id="canvas"></canvas>
+
+    <!-- EFFECTS -->
+    <div class="overlay"></div>
+
+    <div class="red-light"></div>
+
+</div>
 
 
-    <!-- FIXED STAGE -->
+<!-- =================================
+     SCROLL AREA
+================================= -->
 
-    <div class="stage">
-
-
-        <!-- VIDEO SOURCE -->
-
-        <video
-            id="video"
-            src="12.mp4"
-            preload="auto"
-            muted
-            playsinline
-            crossorigin="anonymous">
-        </video>
+<div
+    class="scroll-container"
+    id="scrollContainer">
 
 
-        <!-- CANVAS -->
+    <!-- =================================
+         HUD
+    ================================= -->
 
-        <canvas id="canvas"></canvas>
+    <div class="hud">
 
-
-        <!-- VISUAL EFFECTS -->
-
-        <div class="overlay"></div>
-
-        <div class="red-light"></div>
-
-
-        <!-- HUD -->
-
-        <div class="hud">
-
-            <div>ALMOHSEN // SYSTEM</div>
-
-            <div class="white">
-                VIDEO : 12.MP4
-            </div>
-
-            <div>
-                FRAME : <span id="frame">0000</span>
-            </div>
-
-            <div>
-                PROGRESS : <span id="percent">0</span>%
-            </div>
-
+        <div>
+            ALMOHSEN // SYSTEM
         </div>
 
-
-        <!-- INTRO -->
-
-        <div class="intro" id="intro">
-
-            <h1>ALMOHSEN</h1>
-
-            <p>SCROLL TO EXPERIENCE</p>
-
+        <div class="white">
+            VIDEO : 12.MP4
         </div>
 
-
-        <!-- SOCIAL CARDS -->
-
-        <div class="social-container">
-
-
-            <!-- INSTAGRAM -->
-
-            <div
-                class="card"
-                data-start="0.18">
-
-                <div class="card-top">
-
-                    <div class="icon">
-                        ◎
-                    </div>
-
-                    <div>
-
-                        <h2>INSTAGRAM</h2>
-
-                        <p>@YOUR_USERNAME</p>
-
-                    </div>
-
-                </div>
-
-                <a href="#" target="_blank">
-                    OPEN PROFILE →
-                </a>
-
-            </div>
-
-
-            <!-- TIKTOK -->
-
-            <div
-                class="card"
-                data-start="0.38">
-
-                <div class="card-top">
-
-                    <div class="icon">
-                        ♪
-                    </div>
-
-                    <div>
-
-                        <h2>TIKTOK</h2>
-
-                        <p>@YOUR_USERNAME</p>
-
-                    </div>
-
-                </div>
-
-                <a href="#" target="_blank">
-                    OPEN PROFILE →
-                </a>
-
-            </div>
-
-
-            <!-- FACEBOOK -->
-
-            <div
-                class="card"
-                data-start="0.58">
-
-                <div class="card-top">
-
-                    <div class="icon">
-                        f
-                    </div>
-
-                    <div>
-
-                        <h2>FACEBOOK</h2>
-
-                        <p>YOUR NAME</p>
-
-                    </div>
-
-                </div>
-
-                <a href="#" target="_blank">
-                    OPEN PROFILE →
-                </a>
-
-            </div>
-
-
-            <!-- YOUTUBE -->
-
-            <div
-                class="card"
-                data-start="0.78">
-
-                <div class="card-top">
-
-                    <div class="icon">
-                        ▶
-                    </div>
-
-                    <div>
-
-                        <h2>YOUTUBE</h2>
-
-                        <p>YOUR CHANNEL</p>
-
-                    </div>
-
-                </div>
-
-                <a href="#" target="_blank">
-                    OPEN CHANNEL →
-                </a>
-
-            </div>
-
-
+        <div>
+            FRAME :
+            <span id="frame">
+                0000
+            </span>
         </div>
 
-
-        <!-- SCROLL -->
-
-        <div class="scroll">
-
-            SCROLL
-
+        <div>
+            PROGRESS :
+            <span id="percent">
+                0
+            </span>%
         </div>
 
+    </div>
 
-        <!-- PROGRESS -->
+
+    <!-- =================================
+         INTRO
+    ================================= -->
+
+    <div
+        class="intro"
+        id="intro">
+
+        <h1>
+            ALMOHSEN
+        </h1>
+
+        <p>
+            SCROLL TO EXPERIENCE
+        </p>
+
+    </div>
+
+
+    <!-- =================================
+         SOCIAL CARDS
+    ================================= -->
+
+    <div class="social-container">
+
+
+        <!-- INSTAGRAM -->
 
         <div
-            class="progress"
-            id="progressBar">
+            class="card"
+            data-start="0.18">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    ◎
+                </div>
+
+                <div>
+
+                    <h2>
+                        INSTAGRAM
+                    </h2>
+
+                    <p>
+                        @YOUR_USERNAME
+                    </p>
+
+                </div>
+
+            </div>
+
+            <a
+                href="#"
+                target="_blank">
+
+                OPEN PROFILE →
+
+            </a>
+
         </div>
 
 
+        <!-- TIKTOK -->
+
+        <div
+            class="card"
+            data-start="0.38">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    ♪
+                </div>
+
+                <div>
+
+                    <h2>
+                        TIKTOK
+                    </h2>
+
+                    <p>
+                        @YOUR_USERNAME
+                    </p>
+
+                </div>
+
+            </div>
+
+            <a
+                href="#"
+                target="_blank">
+
+                OPEN PROFILE →
+
+            </a>
+
+        </div>
+
+
+        <!-- FACEBOOK -->
+
+        <div
+            class="card"
+            data-start="0.58">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    f
+                </div>
+
+                <div>
+
+                    <h2>
+                        FACEBOOK
+                    </h2>
+
+                    <p>
+                        YOUR NAME
+                    </p>
+
+                </div>
+
+            </div>
+
+            <a
+                href="#"
+                target="_blank">
+
+                OPEN PROFILE →
+
+            </a>
+
+        </div>
+
+
+        <!-- YOUTUBE -->
+
+        <div
+            class="card"
+            data-start="0.78">
+
+            <div class="card-top">
+
+                <div class="icon">
+                    ▶
+                </div>
+
+                <div>
+
+                    <h2>
+                        YOUTUBE
+                    </h2>
+
+                    <p>
+                        YOUR CHANNEL
+                    </p>
+
+                </div>
+
+            </div>
+
+            <a
+                href="#"
+                target="_blank">
+
+                OPEN CHANNEL →
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         SCROLL INDICATOR
+    ================================= -->
+
+    <div class="scroll">
+        SCROLL
+    </div>
+
+
+    <!-- =================================
+         PROGRESS
+    ================================= -->
+
+    <div
+        class="progress"
+        id="progressBar">
     </div>
 
 </div>
 
 
-<!-- END -->
+<!-- =================================
+     END
+================================= -->
 
 <section class="end">
 
@@ -731,33 +877,59 @@ html,body{
 
 <script>
 
+/* =================================
+   ELEMENTS
+================================= */
+
 const container =
-    document.getElementById("scrollContainer");
+    document.getElementById(
+        "scrollContainer"
+    );
 
 const video =
-    document.getElementById("video");
+    document.getElementById(
+        "video"
+    );
 
 const canvas =
-    document.getElementById("canvas");
+    document.getElementById(
+        "canvas"
+    );
 
 const ctx =
-    canvas.getContext("2d");
+    canvas.getContext(
+        "2d"
+    );
 
 const frameText =
-    document.getElementById("frame");
+    document.getElementById(
+        "frame"
+    );
 
 const percentText =
-    document.getElementById("percent");
+    document.getElementById(
+        "percent"
+    );
 
 const progressBar =
-    document.getElementById("progressBar");
+    document.getElementById(
+        "progressBar"
+    );
 
 const intro =
-    document.getElementById("intro");
+    document.getElementById(
+        "intro"
+    );
 
 const cards =
-    document.querySelectorAll(".card");
+    document.querySelectorAll(
+        ".card"
+    );
 
+
+/* =================================
+   VARIABLES
+================================= */
 
 let duration = 0;
 
@@ -768,9 +940,9 @@ let lastTime = -1;
 let ticking = false;
 
 
-/* =========================
-   CANVAS SIZE
-========================= */
+/* =================================
+   CANVAS RESIZE
+================================= */
 
 function resizeCanvas(){
 
@@ -781,8 +953,12 @@ function resizeCanvas(){
         window.innerHeight;
 
     drawFrame();
-
 }
+
+
+/* =================================
+   WINDOW RESIZE
+================================= */
 
 window.addEventListener(
     "resize",
@@ -790,9 +966,9 @@ window.addEventListener(
 );
 
 
-/* =========================
-   VIDEO LOADED
-========================= */
+/* =================================
+   VIDEO METADATA
+================================= */
 
 video.addEventListener(
     "loadedmetadata",
@@ -811,9 +987,27 @@ video.addEventListener(
 );
 
 
-/* =========================
-   DRAW VIDEO
-========================= */
+/* =================================
+   VIDEO CAN PLAY
+================================= */
+
+video.addEventListener(
+    "canplay",
+    function(){
+
+        ready = true;
+
+        drawFrame();
+
+        update();
+
+    }
+);
+
+
+/* =================================
+   DRAW VIDEO FRAME
+================================= */
 
 function drawFrame(){
 
@@ -823,7 +1017,6 @@ function drawFrame(){
     ){
 
         return;
-
     }
 
 
@@ -834,10 +1027,12 @@ function drawFrame(){
         video.videoHeight;
 
 
-    if(!vw || !vh){
+    if(
+        !vw ||
+        !vh
+    ){
 
         return;
-
     }
 
 
@@ -871,6 +1066,8 @@ function drawFrame(){
         (ch - height) / 2;
 
 
+    /* CLEAR */
+
     ctx.clearRect(
         0,
         0,
@@ -878,6 +1075,8 @@ function drawFrame(){
         ch
     );
 
+
+    /* DRAW */
 
     ctx.drawImage(
         video,
@@ -890,19 +1089,23 @@ function drawFrame(){
 }
 
 
-/* =========================
-   VIDEO SEEK
-========================= */
+/* =================================
+   VIDEO SEEKED
+================================= */
 
 video.addEventListener(
     "seeked",
-    drawFrame
+    function(){
+
+        drawFrame();
+
+    }
 );
 
 
-/* =========================
-   MAIN SCROLL FUNCTION
-========================= */
+/* =================================
+   UPDATE
+================================= */
 
 function update(){
 
@@ -912,22 +1115,27 @@ function update(){
     if(!ready){
 
         return;
-
     }
 
 
-    const rect =
-        container.getBoundingClientRect();
-
+    /* =================================
+       TOTAL SCROLL DISTANCE
+    ================================= */
 
     const total =
         container.offsetHeight -
         window.innerHeight;
 
 
-    let progress =
-        -rect.top / total;
+    /* =================================
+       CURRENT SCROLL
+    ================================= */
 
+    let progress =
+        window.scrollY / total;
+
+
+    /* LIMIT 0 → 1 */
 
     progress =
         Math.max(
@@ -939,7 +1147,9 @@ function update(){
         );
 
 
-    /* VIDEO TIME */
+    /* =================================
+       VIDEO TIME
+    ================================= */
 
     const targetTime =
         progress *
@@ -949,14 +1159,15 @@ function update(){
         );
 
 
-    /*
-       Only seek when time changed
-    */
+    /* =================================
+       SEEK
+    ================================= */
 
     if(
         Math.abs(
-            targetTime - lastTime
-        ) > 0.01
+            targetTime -
+            lastTime
+        ) > 0.005
     ){
 
         lastTime =
@@ -964,22 +1175,30 @@ function update(){
 
         video.currentTime =
             targetTime;
-
     }
 
 
-    /* HUD */
+    /* =================================
+       FRAME NUMBER
+    ================================= */
 
-    const fakeFrame =
+    const frame =
         Math.floor(
             targetTime * 30
         );
 
 
     frameText.textContent =
-        String(fakeFrame)
-        .padStart(4,"0");
+        String(frame)
+        .padStart(
+            4,
+            "0"
+        );
 
+
+    /* =================================
+       PERCENT
+    ================================= */
 
     const percent =
         Math.floor(
@@ -991,29 +1210,39 @@ function update(){
         percent;
 
 
+    /* =================================
+       PROGRESS BAR
+    ================================= */
+
     progressBar.style.width =
         percent + "%";
 
 
-    /* INTRO */
+    /* =================================
+       INTRO FADE
+    ================================= */
 
-    if(progress > .08){
+    if(
+        progress > 0.08
+    ){
 
-        intro.style.opacity = "0";
+        intro.style.opacity =
+            "0";
 
     }else{
 
         intro.style.opacity =
             String(
-                1 - progress / .08
+                1 -
+                progress / 0.08
             );
 
     }
 
 
-    /* =========================
+    /* =================================
        SOCIAL CARDS
-    ========================= */
+    ================================= */
 
     cards.forEach(
         function(card){
@@ -1024,12 +1253,9 @@ function update(){
                 );
 
 
-            /*
-              تظهر البطاقة عند الوصول
-              إلى النسبة المحددة
-            */
-
-            if(progress >= start){
+            if(
+                progress >= start
+            ){
 
                 card.classList.add(
                     "active"
@@ -1049,9 +1275,9 @@ function update(){
 }
 
 
-/* =========================
-   SCROLL
-========================= */
+/* =================================
+   SCROLL EVENT
+================================= */
 
 window.addEventListener(
     "scroll",
@@ -1074,9 +1300,9 @@ window.addEventListener(
 );
 
 
-/* =========================
-   START
-========================= */
+/* =================================
+   INITIALIZE
+================================= */
 
 video.load();
 
