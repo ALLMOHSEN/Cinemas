@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
 
 <meta charset="UTF-8">
@@ -8,14 +7,13 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>Almohsen</title>
-
+<title>ALMOHSEN</title>
 
 <style>
 
-/* ================================
+/* =====================================================
    RESET
-================================ */
+===================================================== */
 
 * {
     margin: 0;
@@ -23,13 +21,14 @@ content="width=device-width, initial-scale=1.0">
     box-sizing: border-box;
 }
 
-
 html,
 body {
 
+    width: 100%;
+
     background: #000;
 
-    color: white;
+    color: #fff;
 
     font-family:
         Arial,
@@ -37,79 +36,153 @@ body {
         sans-serif;
 
     overflow-x: hidden;
-
 }
 
 
-/* ================================
-   SCROLL SPACE
-================================ */
+/* =====================================================
+   SCROLL AREA
+===================================================== */
 
-.scroll-container {
+.scroll-area {
 
-    height: 600vh;
+    /*
+       كلما زاد الرقم،
+       يصبح التحكم بالفيديو أكثر دقة.
+    */
+
+    height: 700vh;
 
     position: relative;
-
 }
 
 
-/* ================================
-   VIDEO STAGE
-================================ */
+/* =====================================================
+   FIXED VIDEO SCREEN
+===================================================== */
 
-.video-stage {
-    position: relative;
+.video-screen {
+
+    position: sticky;
+
+    top: 0;
+
     width: 100%;
+
     height: 100vh;
+
     overflow: hidden;
+
+    background: #000;
 }
 
-/* ================================
-   CANVAS
-================================ */
+
+/* =====================================================
+   VIDEO CANVAS
+===================================================== */
 
 #canvas {
 
     position: absolute;
 
-    top: 0;
-    left: 0;
+    inset: 0;
 
     width: 100%;
+
     height: 100%;
 
     display: block;
-
 }
 
 
-/* ================================
-   DARK GLASS OVERLAY
-================================ */
+/* =====================================================
+   CINEMATIC DARK OVERLAY
+===================================================== */
 
-.overlay {
+.cinematic-overlay {
 
     position: absolute;
 
     inset: 0;
 
+    pointer-events: none;
+
     background:
 
-        radial-gradient(
-            circle at center,
-            transparent 30%,
-            rgba(0,0,0,.35) 100%
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.15),
+            transparent 40%,
+            rgba(0,0,0,.55)
         );
-
-    pointer-events: none;
 
 }
 
 
-/* ================================
+/* =====================================================
+   RED SCI-FI LIGHT
+===================================================== */
+
+.red-glow {
+
+    position: absolute;
+
+    right: -15%;
+
+    top: 0;
+
+    width: 45%;
+
+    height: 100%;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,0,0,.15),
+            transparent 65%
+        );
+
+    filter: blur(35px);
+
+}
+
+
+/* =====================================================
+   HUD
+===================================================== */
+
+.hud {
+
+    position: absolute;
+
+    top: 25px;
+
+    left: 25px;
+
+    direction: ltr;
+
+    font-family: monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,70,70,.8);
+
+    text-shadow:
+        0 0 10px
+        rgba(255,0,0,.5);
+
+    line-height: 1.8;
+
+}
+
+
+/* =====================================================
    INTRO
-================================ */
+===================================================== */
 
 .intro {
 
@@ -125,31 +198,29 @@ body {
 
     text-align: center;
 
-    transition:
-        opacity .5s ease;
-
     pointer-events: none;
 
+    transition:
+        opacity .4s ease;
 }
 
 
 .intro h1 {
 
     font-size:
-        clamp(50px, 12vw, 130px);
+        clamp(55px, 13vw, 140px);
 
     font-weight: 800;
 
-    letter-spacing: 4px;
-
-    text-transform: uppercase;
+    letter-spacing: 6px;
 
     text-shadow:
 
-        0 0 10px rgba(255,255,255,.4),
+        0 0 15px
+        rgba(255,255,255,.4),
 
-        0 0 30px rgba(255,0,0,.25);
-
+        0 0 40px
+        rgba(255,0,0,.35);
 }
 
 
@@ -157,18 +228,19 @@ body {
 
     margin-top: 15px;
 
-    font-size: 16px;
+    font-size: 14px;
 
-    opacity: .8;
+    letter-spacing: 4px;
 
+    opacity: .65;
 }
 
 
-/* ================================
+/* =====================================================
    SOCIAL PANEL
-================================ */
+===================================================== */
 
-.social-container {
+.social-panel {
 
     position: absolute;
 
@@ -179,22 +251,23 @@ body {
     transform:
         translateY(-50%);
 
-    width: min(420px, 88vw);
+    width:
+        min(430px, 92vw);
+
+    padding: 15px;
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 14px;
-
-    padding: 20px;
+    gap: 13px;
 
 }
 
 
-/* ================================
+/* =====================================================
    SOCIAL CARD
-================================ */
+===================================================== */
 
 .social {
 
@@ -206,54 +279,58 @@ body {
 
     gap: 15px;
 
-    min-height: 70px;
+    min-height: 72px;
 
     padding: 15px 20px;
 
-    color: white;
-
     text-decoration: none;
 
-    border-radius: 18px 0 0 18px;
+    color: white;
+
+    border-radius:
+        20px 0 0 20px;
 
 
-    /* GLASS */
+    /*
+       GLASS
+    */
 
     background:
 
         linear-gradient(
             135deg,
-            rgba(255,0,0,.30),
-            rgba(80,0,0,.18)
+            rgba(255,20,20,.35),
+            rgba(50,0,0,.18)
         );
 
 
     border:
-
         1px solid
         rgba(255,80,80,.55);
 
 
     backdrop-filter:
-        blur(18px);
+        blur(20px);
 
     -webkit-backdrop-filter:
-        blur(18px);
+        blur(20px);
 
 
     box-shadow:
 
-        inset 0 0 25px
-        rgba(255,0,0,.08),
+        inset 0 0 30px
+        rgba(255,0,0,.1),
 
-        0 10px 35px
-        rgba(0,0,0,.45),
+        0 15px 40px
+        rgba(0,0,0,.5),
 
-        -10px 0 30px
-        rgba(255,0,0,.08);
+        -5px 0 25px
+        rgba(255,0,0,.15);
 
 
-    /* START OUTSIDE SCREEN */
+    /*
+       يبدأ خارج الشاشة
+    */
 
     opacity: 0;
 
@@ -263,20 +340,24 @@ body {
 
     transition:
 
-        transform .75s
-        cubic-bezier(.16,1,.3,1),
+        opacity .55s ease,
 
-        opacity .5s ease;
+        transform .8s
+        cubic-bezier(
+            .16,
+            1,
+            .3,
+            1
+        );
 
 
     overflow: hidden;
-
 }
 
 
-/* ================================
-   RED LIGHT LINE
-================================ */
+/* =====================================================
+   RED EDGE
+===================================================== */
 
 .social::before {
 
@@ -284,8 +365,9 @@ body {
 
     position: absolute;
 
-    top: 0;
     right: 0;
+
+    top: 0;
 
     width: 4px;
 
@@ -296,21 +378,21 @@ body {
         linear-gradient(
             to bottom,
             transparent,
-            #ff3030,
+            #ff1b1b,
             transparent
         );
 
+
     box-shadow:
 
-        0 0 15px
-        rgba(255,0,0,.9);
-
+        0 0 18px
+        #ff0000;
 }
 
 
-/* ================================
-   MOVING LIGHT
-================================ */
+/* =====================================================
+   SCAN LIGHT
+===================================================== */
 
 .social::after {
 
@@ -331,29 +413,38 @@ body {
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,.12),
+            rgba(255,255,255,.14),
             transparent
         );
 
     transform:
         skewX(-20deg);
 
-    transition:
-        left .7s ease;
+    animation:
+        scan 4s infinite;
+}
+
+
+@keyframes scan {
+
+    0% {
+        left: -120%;
+    }
+
+    30% {
+        left: 140%;
+    }
+
+    100% {
+        left: 140%;
+    }
 
 }
 
 
-.social:hover::after {
-
-    left: 140%;
-
-}
-
-
-/* ================================
-   SHOW CARD
-================================ */
+/* =====================================================
+   SHOW SOCIAL
+===================================================== */
 
 .social.show {
 
@@ -365,27 +456,25 @@ body {
 }
 
 
-/* ================================
+/* =====================================================
    ICON
-================================ */
+===================================================== */
 
 .icon {
 
-    width: 42px;
+    width: 44px;
 
-    height: 42px;
+    height: 44px;
 
-    min-width: 42px;
-
-    border-radius: 12px;
+    min-width: 44px;
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
 
-    font-size: 20px;
+    justify-content: center;
+
+    border-radius: 13px;
 
     background:
 
@@ -394,35 +483,37 @@ body {
     border:
 
         1px solid
-        rgba(255,100,100,.4);
+        rgba(255,100,100,.45);
+
+    font-size: 20px;
 
     box-shadow:
 
         inset 0 0 15px
         rgba(255,0,0,.15),
 
-        0 0 15px
-        rgba(255,0,0,.12);
+        0 0 18px
+        rgba(255,0,0,.15);
 
 }
 
 
-/* ================================
+/* =====================================================
    TEXT
-================================ */
+===================================================== */
 
-.social-text {
+.social-info {
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 4px;
+    gap: 5px;
 
 }
 
 
-.social-title {
+.social-name {
 
     font-size: 15px;
 
@@ -435,29 +526,37 @@ body {
 
     font-size: 12px;
 
-    opacity: .65;
+    opacity: .6;
+
+    direction: ltr;
+
+    text-align: right;
 
 }
 
 
-/* ================================
-   SCROLL HINT
-================================ */
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
 
-.scroll-hint {
+.scroll-indicator {
 
     position: absolute;
 
-    bottom: 30px;
+    bottom: 25px;
 
     left: 50%;
 
     transform:
         translateX(-50%);
 
-    font-size: 13px;
+    text-align: center;
 
-    opacity: .75;
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    opacity: .7;
 
     transition:
         opacity .4s ease;
@@ -465,74 +564,94 @@ body {
 }
 
 
-.scroll-arrow {
+.scroll-indicator span {
+
+    display: block;
 
     margin-top: 8px;
 
-    text-align: center;
-
-    font-size: 20px;
+    font-size: 22px;
 
     animation:
-        bounce 1.5s infinite;
+        arrow 1.5s infinite;
 
 }
 
 
-@keyframes bounce {
+@keyframes arrow {
 
-    0%,100% {
-
+    0%,
+    100% {
         transform:
             translateY(0);
-
     }
 
     50% {
-
         transform:
             translateY(8px);
-
     }
 
 }
 
 
-/* ================================
-   LOADING
-================================ */
+/* =====================================================
+   END
+===================================================== */
 
-.loading {
+.end {
 
-    position: absolute;
+    height: 100vh;
 
-    top: 50%;
+    display: flex;
 
-    left: 50%;
+    align-items: center;
 
-    transform:
-        translate(-50%,-50%);
+    justify-content: center;
 
-    font-size: 14px;
+    text-align: center;
 
-    z-index: 20;
+    background:
+        radial-gradient(
+            circle,
+            #200000,
+            #000 70%
+        );
 
 }
 
 
-/* ================================
+.end h2 {
+
+    font-size:
+        clamp(35px, 8vw, 80px);
+
+    letter-spacing: 5px;
+
+}
+
+
+.end p {
+
+    margin-top: 15px;
+
+    opacity: .6;
+
+}
+
+
+/* =====================================================
    MOBILE
-================================ */
+===================================================== */
 
 @media(max-width:600px) {
 
-    .social-container {
+    .social-panel {
 
-        width: 92vw;
+        width: 94vw;
 
-        padding: 10px;
+        padding: 8px;
 
-        gap: 10px;
+        gap: 9px;
 
     }
 
@@ -541,14 +660,29 @@ body {
 
         min-height: 62px;
 
-        padding: 12px 15px;
+        padding: 11px 14px;
 
     }
 
 
-    .intro h1 {
+    .icon {
 
-        letter-spacing: 2px;
+        width: 38px;
+
+        height: 38px;
+
+        min-width: 38px;
+
+    }
+
+
+    .hud {
+
+        top: 15px;
+
+        left: 15px;
+
+        font-size: 8px;
 
     }
 
@@ -562,54 +696,87 @@ body {
 <body>
 
 
-<!-- =================================
-     VIDEO
-================================= -->
+<!-- =====================================================
+     VIDEO SOURCE
+===================================================== -->
 
 <video
-
     id="video"
-
     src="12.mp4"
-
     preload="auto"
-
     muted
-
     playsinline
-
     webkit-playsinline
-
     style="display:none;">
 
 </video>
 
 
 
-<!-- =================================
-     SCROLL CONTAINER
-================================= -->
+<!-- =====================================================
+     SCROLL AREA
+===================================================== -->
 
-<section class="scroll-container">
-
-
-    <!-- =================================
-         STICKY VIDEO
-    ================================= -->
-
-    <div class="video-stage">
+<section
+    class="scroll-area"
+    id="scrollArea">
 
 
-        <canvas id="canvas"></canvas>
+    <!-- =================================================
+         STICKY SCREEN
+    ================================================== -->
+
+    <div class="video-screen">
 
 
-        <div class="overlay"></div>
+        <!-- VIDEO -->
+
+        <canvas
+            id="canvas">
+        </canvas>
+
+
+        <!-- OVERLAY -->
+
+        <div
+            class="cinematic-overlay">
+        </div>
+
+
+        <div
+            class="red-glow">
+        </div>
+
+
+        <!-- =================================================
+             HUD
+        ================================================== -->
+
+        <div class="hud">
+
+            <div>
+                ALMOHSEN // SYSTEM
+            </div>
+
+            <div>
+                VIDEO_12.MP4
+            </div>
+
+            <div id="frame">
+                FRAME: 0000
+            </div>
+
+            <div id="progress">
+                PROGRESS: 0%
+            </div>
+
+        </div>
 
 
 
-        <!-- =================================
+        <!-- =================================================
              INTRO
-        ================================= -->
+        ================================================== -->
 
         <div
             class="intro"
@@ -618,7 +785,7 @@ body {
             <div>
 
                 <h1>
-                    Almohsen
+                    ALMOHSEN
                 </h1>
 
                 <p>
@@ -631,54 +798,37 @@ body {
 
 
 
-        <!-- =================================
-             SOCIAL ACCOUNTS
-        ================================= -->
+        <!-- =================================================
+             SOCIAL MEDIA
+        ================================================== -->
 
-        <div class="social-container">
+        <div class="social-panel">
 
 
             <!-- INSTAGRAM -->
 
             <a
-
                 class="social"
-
-                data-start="0.25"
-
+                data-start="0.20"
                 href="https://instagram.com/YOUR_USERNAME"
-
                 target="_blank"
-
                 rel="noopener">
 
-
                 <div class="icon">
-
                     ◎
-
                 </div>
 
+                <div class="social-info">
 
-                <div
-                    class="social-text">
-
-                    <div
-                        class="social-title">
-
+                    <div class="social-name">
                         Instagram
-
                     </div>
 
-                    <div
-                        class="social-user">
-
+                    <div class="social-user">
                         @YOUR_USERNAME
-
                     </div>
 
                 </div>
-
 
             </a>
 
@@ -687,44 +837,27 @@ body {
             <!-- TIKTOK -->
 
             <a
-
                 class="social"
-
-                data-start="0.40"
-
+                data-start="0.38"
                 href="https://tiktok.com/@YOUR_USERNAME"
-
                 target="_blank"
-
                 rel="noopener">
 
-
                 <div class="icon">
-
                     ♪
-
                 </div>
 
+                <div class="social-info">
 
-                <div
-                    class="social-text">
-
-                    <div
-                        class="social-title">
-
+                    <div class="social-name">
                         TikTok
-
                     </div>
 
-                    <div
-                        class="social-user">
-
+                    <div class="social-user">
                         @YOUR_USERNAME
-
                     </div>
 
                 </div>
-
 
             </a>
 
@@ -733,44 +866,27 @@ body {
             <!-- FACEBOOK -->
 
             <a
-
                 class="social"
-
-                data-start="0.55"
-
+                data-start="0.56"
                 href="https://facebook.com/YOUR_USERNAME"
-
                 target="_blank"
-
                 rel="noopener">
 
-
                 <div class="icon">
-
                     f
-
                 </div>
 
+                <div class="social-info">
 
-                <div
-                    class="social-text">
-
-                    <div
-                        class="social-title">
-
+                    <div class="social-name">
                         Facebook
-
                     </div>
 
-                    <div
-                        class="social-user">
-
+                    <div class="social-user">
                         YOUR_USERNAME
-
                     </div>
 
                 </div>
-
 
             </a>
 
@@ -779,44 +895,27 @@ body {
             <!-- YOUTUBE -->
 
             <a
-
                 class="social"
-
-                data-start="0.70"
-
+                data-start="0.74"
                 href="https://youtube.com/@YOUR_USERNAME"
-
                 target="_blank"
-
                 rel="noopener">
 
-
                 <div class="icon">
-
                     ▶
-
                 </div>
 
+                <div class="social-info">
 
-                <div
-                    class="social-text">
-
-                    <div
-                        class="social-title">
-
+                    <div class="social-name">
                         YouTube
-
                     </div>
 
-                    <div
-                        class="social-user">
-
+                    <div class="social-user">
                         @YOUR_USERNAME
-
                     </div>
 
                 </div>
-
 
             </a>
 
@@ -825,36 +924,19 @@ body {
 
 
 
-        <!-- =================================
-             SCROLL HINT
-        ================================= -->
+        <!-- =================================================
+             SCROLL
+        ================================================== -->
 
         <div
-            class="scroll-hint"
-            id="scrollHint">
+            class="scroll-indicator"
+            id="scrollIndicator">
 
             SCROLL
 
-            <div
-                class="scroll-arrow">
-
+            <span>
                 ↓
-
-            </div>
-
-        </div>
-
-
-
-        <!-- =================================
-             LOADING
-        ================================= -->
-
-        <div
-            class="loading"
-            id="loading">
-
-            Loading 12.mp4...
+            </span>
 
         </div>
 
@@ -865,37 +947,60 @@ body {
 
 
 
+<!-- =====================================================
+     END
+===================================================== -->
+
+<section class="end">
+
+    <div>
+
+        <h2>
+            ALMOHSEN
+        </h2>
+
+        <p>
+            Thank you for visiting
+        </p>
+
+    </div>
+
+</section>
+
+
+
 <script>
 
-/* ==========================================
+/* =====================================================
    ELEMENTS
-========================================== */
+===================================================== */
 
 const video =
-    document.getElementById("video");
+    document.getElementById(
+        "video"
+    );
 
 const canvas =
-    document.getElementById("canvas");
+    document.getElementById(
+        "canvas"
+    );
 
 const ctx =
     canvas.getContext("2d");
 
-const container =
+const scrollArea =
+    document.getElementById(
+        "scrollArea"
+    );
+
+const videoScreen =
     document.querySelector(
-        ".scroll-container"
+        ".video-screen"
     );
 
 const intro =
-    document.getElementById("intro");
-
-const hint =
     document.getElementById(
-        "scrollHint"
-    );
-
-const loading =
-    document.getElementById(
-        "loading"
+        "intro"
     );
 
 const socials =
@@ -903,10 +1008,25 @@ const socials =
         ".social"
     );
 
+const frame =
+    document.getElementById(
+        "frame"
+    );
 
-/* ==========================================
+const progressText =
+    document.getElementById(
+        "progress"
+    );
+
+const scrollIndicator =
+    document.getElementById(
+        "scrollIndicator"
+    );
+
+
+/* =====================================================
    VARIABLES
-========================================== */
+===================================================== */
 
 let ready = false;
 
@@ -914,12 +1034,12 @@ let duration = 0;
 
 let lastTime = -1;
 
-let raf = null;
+let animation = false;
 
 
-/* ==========================================
+/* =====================================================
    CANVAS
-========================================== */
+===================================================== */
 
 function resizeCanvas() {
 
@@ -931,14 +1051,20 @@ function resizeCanvas() {
 
 
     canvas.width =
-        window.innerWidth * dpr;
+        Math.floor(
+            window.innerWidth * dpr
+        );
+
 
     canvas.height =
-        window.innerHeight * dpr;
+        Math.floor(
+            window.innerHeight * dpr
+        );
 
 
     canvas.style.width =
         window.innerWidth + "px";
+
 
     canvas.style.height =
         window.innerHeight + "px";
@@ -959,9 +1085,9 @@ function resizeCanvas() {
 }
 
 
-/* ==========================================
+/* =====================================================
    DRAW FRAME
-========================================== */
+===================================================== */
 
 function drawFrame() {
 
@@ -989,6 +1115,10 @@ function drawFrame() {
         video.videoHeight;
 
 
+    /*
+       COVER
+    */
+
     const scale =
         Math.max(
             cw / vw,
@@ -999,12 +1129,14 @@ function drawFrame() {
     const width =
         vw * scale;
 
+
     const height =
         vh * scale;
 
 
     const x =
         (cw - width) / 2;
+
 
     const y =
         (ch - height) / 2;
@@ -1029,11 +1161,11 @@ function drawFrame() {
 }
 
 
-/* ==========================================
+/* =====================================================
    VIDEO READY
-========================================== */
+===================================================== */
 
-function videoReady() {
+function videoLoaded() {
 
     if (ready)
         return;
@@ -1047,11 +1179,8 @@ function videoReady() {
         video.duration;
 
 
-    ready = true;
-
-
-    loading.style.display =
-        "none";
+    ready =
+        true;
 
 
     resizeCanvas();
@@ -1059,27 +1188,26 @@ function videoReady() {
 
     update();
 
-
 }
 
 
-/* ==========================================
+/* =====================================================
    VIDEO EVENTS
-========================================== */
+===================================================== */
 
 video.addEventListener(
     "loadedmetadata",
-    videoReady
+    videoLoaded
 );
 
 video.addEventListener(
     "loadeddata",
-    videoReady
+    videoLoaded
 );
 
 video.addEventListener(
     "canplay",
-    videoReady
+    videoLoaded
 );
 
 video.addEventListener(
@@ -1088,13 +1216,13 @@ video.addEventListener(
 );
 
 
-/* ==========================================
-   UPDATE
-========================================== */
+/* =====================================================
+   MAIN SCROLL
+===================================================== */
 
 function update() {
 
-    raf = null;
+    animation = false;
 
 
     if (
@@ -1107,62 +1235,115 @@ function update() {
     }
 
 
+    /*
+       مكان القسم بالنسبة للشاشة
+    */
+
     const rect =
-        container.getBoundingClientRect();
+        scrollArea.getBoundingClientRect();
 
 
-    const max =
-        container.offsetHeight -
+    /*
+       مقدار Scroll داخل القسم
+    */
+
+    const maxScroll =
+        scrollArea.offsetHeight -
         window.innerHeight;
 
 
-    let progress =
-        -rect.top / max;
+    let p =
+        -rect.top /
+        maxScroll;
 
 
-    progress =
+    /*
+       0 → 1
+    */
+
+    p =
         Math.max(
             0,
             Math.min(
                 1,
-                progress
+                p
             )
         );
 
 
-    /* ================================
-       VIDEO
-    ================================= */
+    /* =================================================
+       VIDEO FRAME
+    ================================================= */
 
-    const target =
-        progress * duration;
+    const targetTime =
+        p * duration;
 
 
     if (
         Math.abs(
-            target - lastTime
-        ) > 0.01
+            targetTime -
+            lastTime
+        ) > 0.012
     ) {
 
         lastTime =
-            target;
+            targetTime;
+
 
         video.currentTime =
-            target;
+            targetTime;
 
     }
 
 
-    /* ================================
-       INTRO
-    ================================= */
+    /* =================================================
+       FRAME NUMBER
+    ================================================= */
 
-    if (progress < .15) {
+    /*
+       الرقم تقريبي حسب 30FPS
+    */
+
+    const fps = 30;
+
+    const currentFrame =
+        Math.floor(
+            targetTime * fps
+        );
+
+
+    frame.textContent =
+        "FRAME: " +
+        String(
+            currentFrame
+        ).padStart(
+            4,
+            "0"
+        );
+
+
+    /* =================================================
+       PROGRESS
+    ================================================= */
+
+    progressText.textContent =
+        "PROGRESS: " +
+        Math.round(
+            p * 100
+        ) +
+        "%";
+
+
+    /* =================================================
+       INTRO
+    ================================================= */
+
+    if (p < .15) {
 
         intro.style.opacity =
             String(
                 1 -
-                progress / .15
+                p / .15
             );
 
     }
@@ -1175,19 +1356,9 @@ function update() {
     }
 
 
-    /* ================================
-       SCROLL HINT
-    ================================= */
-
-    hint.style.opacity =
-        progress > .08
-        ? "0"
-        : ".75";
-
-
-    /* ================================
-       SOCIAL PANELS
-    ================================= */
+    /* =================================================
+       SOCIALS
+    ================================================= */
 
     socials.forEach(
         function(card) {
@@ -1198,7 +1369,7 @@ function update() {
                 );
 
 
-            if (progress >= start) {
+            if (p >= start) {
 
                 card.classList.add(
                     "show"
@@ -1217,20 +1388,39 @@ function update() {
         }
     );
 
+
+    /* =================================================
+       SCROLL INDICATOR
+    ================================================= */
+
+    if (p > .08) {
+
+        scrollIndicator.style.opacity =
+            "0";
+
+    }
+
+    else {
+
+        scrollIndicator.style.opacity =
+            ".7";
+
+    }
+
 }
 
 
-/* ==========================================
-   SCROLL
-========================================== */
+/* =====================================================
+   SCROLL EVENT
+===================================================== */
 
 window.addEventListener(
     "scroll",
     function() {
 
-        if (!raf) {
+        if (!animation) {
 
-            raf =
+            animation =
                 requestAnimationFrame(
                     update
                 );
@@ -1244,9 +1434,9 @@ window.addEventListener(
 );
 
 
-/* ==========================================
+/* =====================================================
    RESIZE
-========================================== */
+===================================================== */
 
 window.addEventListener(
     "resize",
@@ -1254,29 +1444,29 @@ window.addEventListener(
 );
 
 
-/* ==========================================
+/* =====================================================
    ERROR
-========================================== */
+===================================================== */
 
 video.addEventListener(
     "error",
     function() {
 
-        loading.innerHTML =
-            "❌ لم يتم العثور على 12.mp4";
+        console.error(
+            "Cannot load 12.mp4"
+        );
 
     }
 );
 
 
-/* ==========================================
+/* =====================================================
    LOAD
-========================================== */
+===================================================== */
 
 video.load();
 
 </script>
-
 
 </body>
 
