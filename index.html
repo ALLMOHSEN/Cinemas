@@ -44,7 +44,7 @@ body{
 
 
 /* =====================================================
-   SCROLL SPACE
+   SCROLL AREA
 ===================================================== */
 
 .scroll-container{
@@ -123,7 +123,7 @@ body{
 
 
 /* =====================================================
-   CINEMATIC DARKNESS
+   DARK CINEMATIC OVERLAY
 ===================================================== */
 
 .overlay{
@@ -141,8 +141,8 @@ body{
         linear-gradient(
             180deg,
             rgba(0,0,0,.55),
-            rgba(0,0,0,.05) 35%,
-            rgba(0,0,0,.7)
+            rgba(0,0,0,.08) 40%,
+            rgba(0,0,0,.72)
         );
 
 }
@@ -188,7 +188,7 @@ body{
 
     pointer-events:none;
 
-    opacity:.12;
+    opacity:.10;
 
     background:
 
@@ -275,7 +275,7 @@ body{
 
 
 /* =====================================================
-   TOP RIGHT STATUS
+   STATUS
 ===================================================== */
 
 .status{
@@ -426,8 +426,7 @@ body{
 
         opacity:.2;
 
-        transform:
-            scaleY(.3);
+        transform:scaleY(.3);
 
         transform-origin:top;
 
@@ -437,8 +436,7 @@ body{
 
         opacity:1;
 
-        transform:
-            scaleY(1);
+        transform:scaleY(1);
 
     }
 
@@ -446,8 +444,7 @@ body{
 
         opacity:.2;
 
-        transform:
-            scaleY(.3);
+        transform:scaleY(.3);
 
         transform-origin:bottom;
 
@@ -457,10 +454,10 @@ body{
 
 
 /* =====================================================
-   SOCIAL CONTAINER
+   SOCIAL ICONS
 ===================================================== */
 
-.social-container{
+.social-icons{
 
     position:fixed;
 
@@ -474,256 +471,28 @@ body{
 
 
 /* =====================================================
-   GLASS CARD
+   GLASS ICON
 ===================================================== */
 
-.card{
+.social-icon{
 
     position:absolute;
 
-    width:
-        min(380px,82vw);
-
-    min-height:115px;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    border:
-
-        1px solid
-        rgba(255,80,80,.5);
-
-    border-right:
-
-        2px solid
-        rgba(255,30,30,.95);
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(255,30,30,.13),
-            rgba(30,0,0,.38)
-        );
-
-    backdrop-filter:
-        blur(22px)
-        saturate(150%);
-
-    -webkit-backdrop-filter:
-        blur(22px)
-        saturate(150%);
-
-    box-shadow:
-
-        0 15px 50px
-        rgba(0,0,0,.45),
-
-        0 0 25px
-        rgba(255,0,0,.14),
-
-        inset 0 1px 0
-        rgba(255,255,255,.16),
-
-        inset 0 0 30px
-        rgba(255,0,0,.05);
-
-    opacity:0;
-
-    transform:
-        translateX(140%)
-        rotate(5deg)
-        scale(.92);
-
-    transition:
-
-        transform
-        .9s cubic-bezier(.16,1,.3,1),
-
-        opacity
-        .5s ease;
-
-    overflow:hidden;
-
-    pointer-events:auto;
-
-}
-
-
-/* =====================================================
-   CARD ACTIVE
-===================================================== */
-
-.card.active{
-
-    opacity:1;
-
-    transform:
-        translateX(0)
-        rotate(0deg)
-        scale(1);
-
-}
-
-
-/* =====================================================
-   CARD LIGHT EDGE
-===================================================== */
-
-.card::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:-100%;
-
-    width:80%;
-
-    height:100%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,.13),
-            transparent
-        );
-
-    transform:
-        skewX(-20deg);
-
-    animation:
-        glassShine 4s infinite;
-
-}
-
-
-@keyframes glassShine{
-
-    0%{
-        left:-100%;
-    }
-
-    35%{
-        left:130%;
-    }
-
-    100%{
-        left:130%;
-    }
-
-}
-
-
-/* =====================================================
-   CARD SCAN
-===================================================== */
-
-.card::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-
-    top:-10px;
-
-    height:1px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            #ff2222,
-            #fff,
-            #ff2222,
-            transparent
-        );
-
-    box-shadow:
-        0 0 10px red;
-
-    animation:
-        cardScan 3s linear infinite;
-
-}
-
-
-@keyframes cardScan{
-
-    0%{
-
-        transform:
-            translateY(0);
-
-        opacity:0;
-
-    }
-
-    10%{
-        opacity:1;
-    }
-
-    90%{
-        opacity:1;
-    }
-
-    100%{
-
-        transform:
-            translateY(140px);
-
-        opacity:0;
-
-    }
-
-}
-
-
-/* =====================================================
-   CARD HEADER
-===================================================== */
-
-.card-top{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-}
-
-
-/* =====================================================
-   ICON
-===================================================== */
-
-.icon{
-
-    flex-shrink:0;
-
-    width:52px;
-    height:52px;
+    width:64px;
+    height:64px;
 
     display:flex;
 
     align-items:center;
     justify-content:center;
 
-    border-radius:15px;
+    border-radius:20px;
+
+    text-decoration:none;
 
     color:#ff3535;
 
-    font-size:21px;
+    font-size:25px;
 
     font-weight:bold;
 
@@ -731,8 +500,8 @@ body{
 
         linear-gradient(
             135deg,
-            rgba(255,0,0,.22),
-            rgba(255,0,0,.04)
+            rgba(255,30,30,.20),
+            rgba(30,0,0,.35)
         );
 
     border:
@@ -740,122 +509,359 @@ body{
         1px solid
         rgba(255,70,70,.55);
 
+    backdrop-filter:
+        blur(18px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(160%);
+
     box-shadow:
 
-        0 0 20px
-        rgba(255,0,0,.18),
+        0 10px 40px
+        rgba(0,0,0,.5),
+
+        0 0 25px
+        rgba(255,0,0,.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,.18),
 
         inset 0 0 15px
         rgba(255,0,0,.1);
 
-}
+    opacity:0;
 
+    pointer-events:auto;
 
-/* =====================================================
-   CARD TEXT
-===================================================== */
+    transform:
+        translateX(150px)
+        scale(.7)
+        rotate(15deg);
 
-.card h2{
+    transition:
 
-    font-size:15px;
+        opacity .8s ease,
 
-    letter-spacing:2px;
-
-    margin-bottom:6px;
-
-}
-
-
-.card p{
-
-    font-size:11px;
-
-    color:rgba(255,255,255,.55);
-
-    letter-spacing:1px;
+        transform
+        1s cubic-bezier(.16,1,.3,1);
 
 }
 
 
 /* =====================================================
-   CARD LINK
+   ACTIVE
 ===================================================== */
 
-.card a{
+.social-icon.active{
 
-    display:inline-block;
+    opacity:1;
 
-    margin-top:15px;
+    transform:
+        translateX(0)
+        scale(1)
+        rotate(0deg);
 
-    padding:7px 11px;
+}
 
-    border-radius:7px;
+
+/* =====================================================
+   GLASS SHINE
+===================================================== */
+
+.social-icon::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:80%;
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            110deg,
+            transparent 30%,
+            rgba(255,255,255,.25),
+            transparent 70%
+        );
+
+    transform:
+        skewX(-20deg);
+
+    animation:
+        iconShine 4s infinite;
+
+}
+
+
+@keyframes iconShine{
+
+    0%{
+        left:-120%;
+    }
+
+    30%{
+        left:130%;
+    }
+
+    100%{
+        left:130%;
+    }
+
+}
+
+
+/* =====================================================
+   RED GLOW BORDER
+===================================================== */
+
+.social-icon::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:21px;
 
     border:
         1px solid
-        rgba(255,40,40,.35);
-
-    color:#ff4a4a;
-
-    text-decoration:none;
-
-    font-size:9px;
-
-    letter-spacing:2px;
-
-    background:
-        rgba(255,0,0,.06);
-
-    transition:.3s;
-
-}
-
-
-.card a:hover{
-
-    background:
-        rgba(255,0,0,.18);
+        rgba(255,0,0,.3);
 
     box-shadow:
-        0 0 15px rgba(255,0,0,.2);
+
+        0 0 12px
+        rgba(255,0,0,.35),
+
+        inset 0 0 10px
+        rgba(255,0,0,.15);
+
+    pointer-events:none;
 
 }
 
 
 /* =====================================================
-   RANDOM CARD POSITIONS
+   RANDOM POSITIONS
 ===================================================== */
 
-.card:nth-child(1){
+.instagram{
 
-    top:20%;
+    top:21%;
 
-}
-
-
-.card:nth-child(2){
-
-    top:39%;
+    right:13%;
 
 }
 
 
-.card:nth-child(3){
+.tiktok{
 
-    top:58%;
+    top:42%;
+
+    right:8%;
 
 }
 
 
-.card:nth-child(4){
+.facebook{
 
-    top:74%;
+    top:60%;
+
+    right:18%;
+
+}
+
+
+.youtube{
+
+    top:76%;
+
+    right:8%;
 
 }
 
 
 /* =====================================================
-   PROGRESS
+   FLOATING ANIMATION
+===================================================== */
+
+.instagram.active{
+
+    animation:
+        floatInstagram 4.8s ease-in-out infinite;
+
+}
+
+
+.tiktok.active{
+
+    animation:
+        floatTikTok 5.5s ease-in-out infinite;
+
+}
+
+
+.facebook.active{
+
+    animation:
+        floatFacebook 4.4s ease-in-out infinite;
+
+}
+
+
+.youtube.active{
+
+    animation:
+        floatYoutube 5.8s ease-in-out infinite;
+
+}
+
+
+/* =====================================================
+   FLOAT 1
+===================================================== */
+
+@keyframes floatInstagram{
+
+    0%,
+    100%{
+
+        margin-top:0;
+
+        margin-left:0;
+
+        transform:
+            rotate(-4deg)
+            scale(1);
+
+    }
+
+    50%{
+
+        margin-top:15px;
+
+        margin-left:-18px;
+
+        transform:
+            rotate(5deg)
+            scale(1.04);
+
+    }
+
+}
+
+
+/* =====================================================
+   FLOAT 2
+===================================================== */
+
+@keyframes floatTikTok{
+
+    0%,
+    100%{
+
+        margin-top:0;
+
+        margin-left:0;
+
+        transform:
+            rotate(5deg)
+            scale(1);
+
+    }
+
+    50%{
+
+        margin-top:-20px;
+
+        margin-left:20px;
+
+        transform:
+            rotate(-6deg)
+            scale(1.05);
+
+    }
+
+}
+
+
+/* =====================================================
+   FLOAT 3
+===================================================== */
+
+@keyframes floatFacebook{
+
+    0%,
+    100%{
+
+        margin-top:0;
+
+        margin-left:0;
+
+        transform:
+            rotate(-3deg)
+            scale(1);
+
+    }
+
+    50%{
+
+        margin-top:-18px;
+
+        margin-left:-15px;
+
+        transform:
+            rotate(6deg)
+            scale(1.03);
+
+    }
+
+}
+
+
+/* =====================================================
+   FLOAT 4
+===================================================== */
+
+@keyframes floatYoutube{
+
+    0%,
+    100%{
+
+        margin-top:0;
+
+        margin-left:0;
+
+        transform:
+            rotate(4deg)
+            scale(1);
+
+    }
+
+    50%{
+
+        margin-top:18px;
+
+        margin-left:22px;
+
+        transform:
+            rotate(-6deg)
+            scale(1.05);
+
+    }
+
+}
+
+
+/* =====================================================
+   PROGRESS BAR
 ===================================================== */
 
 .progress{
@@ -874,8 +880,11 @@ body{
     background:#ff2020;
 
     box-shadow:
+
         0 0 15px red,
-        0 0 30px rgba(255,0,0,.5);
+
+        0 0 30px
+        rgba(255,0,0,.5);
 
 }
 
@@ -927,6 +936,7 @@ body{
     .hud{
 
         top:15px;
+
         left:15px;
 
         font-size:8px;
@@ -937,6 +947,7 @@ body{
     .status{
 
         top:15px;
+
         right:15px;
 
         font-size:7px;
@@ -958,42 +969,50 @@ body{
     }
 
 
-    .card{
+    .social-icon{
 
-        width:
-            calc(100vw - 30px);
+        width:53px;
+        height:53px;
 
-        min-height:105px;
+        border-radius:17px;
 
-        padding:16px;
-
-    }
-
-
-    .card:nth-child(1){
-
-        top:22%;
+        font-size:21px;
 
     }
 
 
-    .card:nth-child(2){
+    .instagram{
 
-        top:38%;
+        top:23%;
 
-    }
-
-
-    .card:nth-child(3){
-
-        top:55%;
+        right:9%;
 
     }
 
 
-    .card:nth-child(4){
+    .tiktok{
 
-        top:70%;
+        top:42%;
+
+        right:7%;
+
+    }
+
+
+    .facebook{
+
+        top:59%;
+
+        right:13%;
+
+    }
+
+
+    .youtube{
+
+        top:74%;
+
+        right:8%;
 
     }
 
@@ -1049,7 +1068,7 @@ body{
 
 
 <!-- =====================================================
-     SCROLL AREA
+     SCROLL CONTENT
 ===================================================== -->
 
 <div
@@ -1135,170 +1154,65 @@ body{
 
 
     <!-- =================================================
-         SOCIAL CARDS
+         SOCIAL ICONS
     ================================================= -->
 
-    <div
-        class="social-container">
+    <div class="social-icons">
 
 
-        <!-- =============================================
-             INSTAGRAM
-        ============================================== -->
+        <!-- INSTAGRAM -->
 
-        <div
-            class="card"
-            data-start="0.16">
+        <a
+            class="social-icon instagram"
+            href="#"
+            target="_blank"
+            aria-label="Instagram">
 
-            <div class="card-top">
+            ◎
 
-                <div class="icon">
-                    ◎
-                </div>
-
-                <div>
-
-                    <h2>
-                        INSTAGRAM
-                    </h2>
-
-                    <p>
-                        @YOUR_USERNAME
-                    </p>
-
-                </div>
-
-            </div>
-
-            <a
-                href="#"
-                target="_blank">
-
-                OPEN PROFILE →
-
-            </a>
-
-        </div>
+        </a>
 
 
 
-        <!-- =============================================
-             TIKTOK
-        ============================================== -->
+        <!-- TIKTOK -->
 
-        <div
-            class="card"
-            data-start="0.35">
+        <a
+            class="social-icon tiktok"
+            href="#"
+            target="_blank"
+            aria-label="TikTok">
 
-            <div class="card-top">
+            ♪
 
-                <div class="icon">
-                    ♪
-                </div>
-
-                <div>
-
-                    <h2>
-                        TIKTOK
-                    </h2>
-
-                    <p>
-                        @YOUR_USERNAME
-                    </p>
-
-                </div>
-
-            </div>
-
-            <a
-                href="#"
-                target="_blank">
-
-                OPEN PROFILE →
-
-            </a>
-
-        </div>
+        </a>
 
 
 
-        <!-- =============================================
-             FACEBOOK
-        ============================================== -->
+        <!-- FACEBOOK -->
 
-        <div
-            class="card"
-            data-start="0.55">
+        <a
+            class="social-icon facebook"
+            href="#"
+            target="_blank"
+            aria-label="Facebook">
 
-            <div class="card-top">
+            f
 
-                <div class="icon">
-                    f
-                </div>
-
-                <div>
-
-                    <h2>
-                        FACEBOOK
-                    </h2>
-
-                    <p>
-                        YOUR NAME
-                    </p>
-
-                </div>
-
-            </div>
-
-            <a
-                href="#"
-                target="_blank">
-
-                OPEN PROFILE →
-
-            </a>
-
-        </div>
+        </a>
 
 
 
-        <!-- =============================================
-             YOUTUBE
-        ============================================== -->
+        <!-- YOUTUBE -->
 
-        <div
-            class="card"
-            data-start="0.76">
+        <a
+            class="social-icon youtube"
+            href="#"
+            target="_blank"
+            aria-label="YouTube">
 
-            <div class="card-top">
+            ▶
 
-                <div class="icon">
-                    ▶
-                </div>
-
-                <div>
-
-                    <h2>
-                        YOUTUBE
-                    </h2>
-
-                    <p>
-                        YOUR CHANNEL
-                    </p>
-
-                </div>
-
-            </div>
-
-            <a
-                href="#"
-                target="_blank">
-
-                OPEN CHANNEL →
-
-            </a>
-
-        </div>
+        </a>
 
 
     </div>
@@ -1320,7 +1234,7 @@ body{
 
 
     <!-- =================================================
-         PROGRESS BAR
+         PROGRESS
     ================================================= -->
 
     <div
@@ -1401,11 +1315,10 @@ const intro =
     );
 
 
-const cards =
+const socialIcons =
     document.querySelectorAll(
-        ".card"
+        ".social-icon"
     );
-
 
 
 /* =====================================================
@@ -1421,9 +1334,8 @@ let lastTime = -1;
 let ticking = false;
 
 
-
 /* =====================================================
-   RESIZE CANVAS
+   RESIZE
 ===================================================== */
 
 function resizeCanvas(){
@@ -1445,9 +1357,8 @@ window.addEventListener(
 );
 
 
-
 /* =====================================================
-   VIDEO READY
+   VIDEO METADATA
 ===================================================== */
 
 video.addEventListener(
@@ -1467,6 +1378,10 @@ video.addEventListener(
 );
 
 
+/* =====================================================
+   VIDEO READY
+===================================================== */
+
 video.addEventListener(
     "canplay",
     function(){
@@ -1475,13 +1390,14 @@ video.addEventListener(
 
         drawFrame();
 
+        update();
+
     }
 );
 
 
-
 /* =====================================================
-   DRAW VIDEO WITHOUT DISTORTION
+   DRAW VIDEO
 ===================================================== */
 
 function drawFrame(){
@@ -1496,17 +1412,17 @@ function drawFrame(){
     }
 
 
-    const videoWidth =
+    const vw =
         video.videoWidth;
 
 
-    const videoHeight =
+    const vh =
         video.videoHeight;
 
 
     if(
-        !videoWidth ||
-        !videoHeight
+        !vw ||
+        !vh
     ){
 
         return;
@@ -1514,41 +1430,34 @@ function drawFrame(){
     }
 
 
-    const screenWidth =
+    const cw =
         canvas.width;
 
 
-    const screenHeight =
+    const ch =
         canvas.height;
 
 
-
     /*
-       IMPORTANT
+       ORIGINAL VIDEO RATIO
 
-       This keeps the original
-       video aspect ratio.
-
-       The video NEVER gets stretched.
-
-       If the screen ratio is different,
-       only the edges are cropped.
+       No stretching.
+       No squeezing.
+       Only cropping.
     */
 
 
     const videoRatio =
-        videoWidth /
-        videoHeight;
+        vw / vh;
 
 
     const screenRatio =
-        screenWidth /
-        screenHeight;
+        cw / ch;
 
 
-    let drawWidth;
+    let width;
 
-    let drawHeight;
+    let height;
 
 
     if(
@@ -1556,75 +1465,54 @@ function drawFrame(){
         videoRatio
     ){
 
-        /*
-           Screen wider than video
-        */
+        width =
+            cw;
 
-        drawWidth =
-            screenWidth;
-
-        drawHeight =
-            screenWidth /
+        height =
+            cw /
             videoRatio;
 
     }else{
 
-        /*
-           Screen taller than video
-        */
+        height =
+            ch;
 
-        drawHeight =
-            screenHeight;
-
-        drawWidth =
-            screenHeight *
+        width =
+            ch *
             videoRatio;
 
     }
 
 
     const x =
-        (screenWidth -
-        drawWidth) / 2;
+        (cw - width) / 2;
 
 
     const y =
-        (screenHeight -
-        drawHeight) / 2;
+        (ch - height) / 2;
 
-
-
-    /*
-       Clear canvas
-    */
 
     ctx.clearRect(
         0,
         0,
-        screenWidth,
-        screenHeight
+        cw,
+        ch
     );
 
-
-
-    /*
-       Draw video
-    */
 
     ctx.drawImage(
         video,
         x,
         y,
-        drawWidth,
-        drawHeight
+        width,
+        height
     );
 
 }
 
 
-
 /* =====================================================
-   VIDEO SEEKED
+   SEEKED
 ===================================================== */
 
 video.addEventListener(
@@ -1637,9 +1525,8 @@ video.addEventListener(
 );
 
 
-
 /* =====================================================
-   UPDATE SCROLL
+   MAIN UPDATE
 ===================================================== */
 
 function update(){
@@ -1657,30 +1544,19 @@ function update(){
     }
 
 
-
-    /*
-       Total scroll distance
-    */
+    /* TOTAL SCROLL */
 
     const total =
         container.offsetHeight -
         window.innerHeight;
 
 
-
-    /*
-       Scroll percentage
-    */
+    /* PROGRESS */
 
     let progress =
         window.scrollY /
         total;
 
-
-
-    /*
-       Limit
-    */
 
     progress =
         Math.max(
@@ -1690,7 +1566,6 @@ function update(){
                 progress
             )
         );
-
 
 
     /* =================================================
@@ -1704,11 +1579,6 @@ function update(){
             duration - 0.05
         );
 
-
-
-    /*
-       Smooth frame seeking
-    */
 
     if(
         Math.abs(
@@ -1726,13 +1596,11 @@ function update(){
     }
 
 
-
     /* =================================================
-       FRAME NUMBER
+       FRAME
     ================================================= */
 
-    const fps =
-        30;
+    const fps = 30;
 
 
     const currentFrame =
@@ -1751,7 +1619,6 @@ function update(){
         );
 
 
-
     /* =================================================
        PERCENT
     ================================================= */
@@ -1766,14 +1633,12 @@ function update(){
         percent;
 
 
-
     /* =================================================
        PROGRESS BAR
     ================================================= */
 
     progressBar.style.width =
         percent + "%";
-
 
 
     /* =================================================
@@ -1799,31 +1664,35 @@ function update(){
     }
 
 
-
     /* =================================================
-       SOCIAL CARDS
+       SOCIAL ICONS
     ================================================= */
 
-    cards.forEach(
-        function(card){
+    const starts = [
 
-            const start =
-                parseFloat(
-                    card.dataset.start
-                );
+        0.15,
+        0.34,
+        0.54,
+        0.75
 
+    ];
+
+
+    socialIcons.forEach(
+        function(icon,index){
 
             if(
-                progress >= start
+                progress >=
+                starts[index]
             ){
 
-                card.classList.add(
+                icon.classList.add(
                     "active"
                 );
 
             }else{
 
-                card.classList.remove(
+                icon.classList.remove(
                     "active"
                 );
 
@@ -1835,9 +1704,8 @@ function update(){
 }
 
 
-
 /* =====================================================
-   SCROLL EVENT
+   SCROLL
 ===================================================== */
 
 window.addEventListener(
@@ -1863,7 +1731,6 @@ window.addEventListener(
 );
 
 
-
 /* =====================================================
    INITIALIZE
 ===================================================== */
@@ -1875,6 +1742,7 @@ resizeCanvas();
 update();
 
 </script>
+
 
 </body>
 </html>
