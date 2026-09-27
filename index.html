@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>ALMOHSEN // EXPERIENCE</title>
 
@@ -40,6 +40,7 @@ body{
         sans-serif;
 
     overflow-x:hidden;
+
 }
 
 
@@ -83,15 +84,15 @@ body{
 
 
 /* =====================================================
-   VIDEO SOURCE
+   HIDDEN VIDEO SOURCE
 ===================================================== */
 
 #video{
 
     position:absolute;
 
-    width:2px;
-    height:2px;
+    width:1px;
+    height:1px;
 
     opacity:0.001;
 
@@ -110,8 +111,8 @@ body{
 
     inset:0;
 
-    width:100%;
-    height:100%;
+    width:100vw;
+    height:100vh;
 
     display:block;
 
@@ -123,7 +124,7 @@ body{
 
 
 /* =====================================================
-   DARK CINEMATIC OVERLAY
+   CINEMATIC OVERLAY
 ===================================================== */
 
 .overlay{
@@ -373,6 +374,356 @@ body{
 
 
 /* =====================================================
+   SOCIAL ICONS
+===================================================== */
+
+.social-icons{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:150;
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================================
+   GLASS ICON
+===================================================== */
+
+.social-icon{
+
+    position:absolute;
+
+    width:64px;
+    height:64px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:20px;
+
+    text-decoration:none;
+
+    color:#ff3535;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,30,30,.20),
+            rgba(30,0,0,.35)
+        );
+
+    border:
+        1px solid
+        rgba(255,70,70,.55);
+
+    backdrop-filter:
+        blur(18px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(160%);
+
+    box-shadow:
+
+        0 10px 40px
+        rgba(0,0,0,.5),
+
+        0 0 25px
+        rgba(255,0,0,.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,.18),
+
+        inset 0 0 15px
+        rgba(255,0,0,.1);
+
+    opacity:0;
+
+    pointer-events:auto;
+
+    transform:
+        translateX(150px)
+        scale(.7)
+        rotate(15deg);
+
+    transition:
+
+        opacity .8s ease,
+
+        transform
+        1s cubic-bezier(.16,1,.3,1);
+
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
+
+.social-icon.active{
+
+    opacity:1;
+
+    transform:
+        translateX(0)
+        scale(1)
+        rotate(0deg);
+
+}
+
+
+/* =====================================================
+   SHINE
+===================================================== */
+
+.social-icon::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:80%;
+    height:100%;
+
+    background:
+
+        linear-gradient(
+            110deg,
+            transparent 30%,
+            rgba(255,255,255,.25),
+            transparent 70%
+        );
+
+    transform:
+        skewX(-20deg);
+
+    animation:
+        iconShine 4s infinite;
+
+}
+
+
+@keyframes iconShine{
+
+    0%{
+        left:-120%;
+    }
+
+    30%{
+        left:130%;
+    }
+
+    100%{
+        left:130%;
+    }
+
+}
+
+
+/* =====================================================
+   GLOW
+===================================================== */
+
+.social-icon::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:21px;
+
+    border:
+        1px solid
+        rgba(255,0,0,.3);
+
+    box-shadow:
+
+        0 0 12px
+        rgba(255,0,0,.35),
+
+        inset 0 0 10px
+        rgba(255,0,0,.15);
+
+    pointer-events:none;
+
+}
+
+
+/* =====================================================
+   POSITIONS
+===================================================== */
+
+.instagram{
+
+    top:21%;
+
+    right:13%;
+
+}
+
+
+.tiktok{
+
+    top:42%;
+
+    right:8%;
+
+}
+
+
+.facebook{
+
+    top:60%;
+
+    right:18%;
+
+}
+
+
+.youtube{
+
+    top:76%;
+
+    right:8%;
+
+}
+
+
+/* =====================================================
+   FLOATING
+===================================================== */
+
+.instagram.active{
+
+    animation:
+        floatInstagram 4.8s ease-in-out infinite;
+
+}
+
+
+.tiktok.active{
+
+    animation:
+        floatTikTok 5.5s ease-in-out infinite;
+
+}
+
+
+.facebook.active{
+
+    animation:
+        floatFacebook 4.4s ease-in-out infinite;
+
+}
+
+
+.youtube.active{
+
+    animation:
+        floatYoutube 5.8s ease-in-out infinite;
+
+}
+
+
+@keyframes floatInstagram{
+
+    0%,
+    100%{
+
+        margin-top:0;
+        margin-left:0;
+
+    }
+
+    50%{
+
+        margin-top:15px;
+        margin-left:-18px;
+
+    }
+
+}
+
+
+@keyframes floatTikTok{
+
+    0%,
+    100%{
+
+        margin-top:0;
+        margin-left:0;
+
+    }
+
+    50%{
+
+        margin-top:-20px;
+        margin-left:20px;
+
+    }
+
+}
+
+
+@keyframes floatFacebook{
+
+    0%,
+    100%{
+
+        margin-top:0;
+        margin-left:0;
+
+    }
+
+    50%{
+
+        margin-top:-18px;
+        margin-left:-15px;
+
+    }
+
+}
+
+
+@keyframes floatYoutube{
+
+    0%,
+    100%{
+
+        margin-top:0;
+        margin-left:0;
+
+    }
+
+    50%{
+
+        margin-top:18px;
+        margin-left:22px;
+
+    }
+
+}
+
+
+/* =====================================================
    SCROLL INDICATOR
 ===================================================== */
 
@@ -454,414 +805,7 @@ body{
 
 
 /* =====================================================
-   SOCIAL ICONS
-===================================================== */
-
-.social-icons{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:150;
-
-    pointer-events:none;
-
-}
-
-
-/* =====================================================
-   GLASS ICON
-===================================================== */
-
-.social-icon{
-
-    position:absolute;
-
-    width:64px;
-    height:64px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:20px;
-
-    text-decoration:none;
-
-    color:#ff3535;
-
-    font-size:25px;
-
-    font-weight:bold;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(255,30,30,.20),
-            rgba(30,0,0,.35)
-        );
-
-    border:
-
-        1px solid
-        rgba(255,70,70,.55);
-
-    backdrop-filter:
-        blur(18px)
-        saturate(160%);
-
-    -webkit-backdrop-filter:
-        blur(18px)
-        saturate(160%);
-
-    box-shadow:
-
-        0 10px 40px
-        rgba(0,0,0,.5),
-
-        0 0 25px
-        rgba(255,0,0,.25),
-
-        inset 0 1px 0
-        rgba(255,255,255,.18),
-
-        inset 0 0 15px
-        rgba(255,0,0,.1);
-
-    opacity:0;
-
-    pointer-events:auto;
-
-    transform:
-        translateX(150px)
-        scale(.7)
-        rotate(15deg);
-
-    transition:
-
-        opacity .8s ease,
-
-        transform
-        1s cubic-bezier(.16,1,.3,1);
-
-}
-
-
-/* =====================================================
-   ACTIVE
-===================================================== */
-
-.social-icon.active{
-
-    opacity:1;
-
-    transform:
-        translateX(0)
-        scale(1)
-        rotate(0deg);
-
-}
-
-
-/* =====================================================
-   GLASS SHINE
-===================================================== */
-
-.social-icon::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:0;
-    left:-120%;
-
-    width:80%;
-    height:100%;
-
-    background:
-
-        linear-gradient(
-            110deg,
-            transparent 30%,
-            rgba(255,255,255,.25),
-            transparent 70%
-        );
-
-    transform:
-        skewX(-20deg);
-
-    animation:
-        iconShine 4s infinite;
-
-}
-
-
-@keyframes iconShine{
-
-    0%{
-        left:-120%;
-    }
-
-    30%{
-        left:130%;
-    }
-
-    100%{
-        left:130%;
-    }
-
-}
-
-
-/* =====================================================
-   RED GLOW BORDER
-===================================================== */
-
-.social-icon::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-2px;
-
-    border-radius:21px;
-
-    border:
-        1px solid
-        rgba(255,0,0,.3);
-
-    box-shadow:
-
-        0 0 12px
-        rgba(255,0,0,.35),
-
-        inset 0 0 10px
-        rgba(255,0,0,.15);
-
-    pointer-events:none;
-
-}
-
-
-/* =====================================================
-   RANDOM POSITIONS
-===================================================== */
-
-.instagram{
-
-    top:21%;
-
-    right:13%;
-
-}
-
-
-.tiktok{
-
-    top:42%;
-
-    right:8%;
-
-}
-
-
-.facebook{
-
-    top:60%;
-
-    right:18%;
-
-}
-
-
-.youtube{
-
-    top:76%;
-
-    right:8%;
-
-}
-
-
-/* =====================================================
-   FLOATING ANIMATION
-===================================================== */
-
-.instagram.active{
-
-    animation:
-        floatInstagram 4.8s ease-in-out infinite;
-
-}
-
-
-.tiktok.active{
-
-    animation:
-        floatTikTok 5.5s ease-in-out infinite;
-
-}
-
-
-.facebook.active{
-
-    animation:
-        floatFacebook 4.4s ease-in-out infinite;
-
-}
-
-
-.youtube.active{
-
-    animation:
-        floatYoutube 5.8s ease-in-out infinite;
-
-}
-
-
-/* =====================================================
-   FLOAT 1
-===================================================== */
-
-@keyframes floatInstagram{
-
-    0%,
-    100%{
-
-        margin-top:0;
-
-        margin-left:0;
-
-        transform:
-            rotate(-4deg)
-            scale(1);
-
-    }
-
-    50%{
-
-        margin-top:15px;
-
-        margin-left:-18px;
-
-        transform:
-            rotate(5deg)
-            scale(1.04);
-
-    }
-
-}
-
-
-/* =====================================================
-   FLOAT 2
-===================================================== */
-
-@keyframes floatTikTok{
-
-    0%,
-    100%{
-
-        margin-top:0;
-
-        margin-left:0;
-
-        transform:
-            rotate(5deg)
-            scale(1);
-
-    }
-
-    50%{
-
-        margin-top:-20px;
-
-        margin-left:20px;
-
-        transform:
-            rotate(-6deg)
-            scale(1.05);
-
-    }
-
-}
-
-
-/* =====================================================
-   FLOAT 3
-===================================================== */
-
-@keyframes floatFacebook{
-
-    0%,
-    100%{
-
-        margin-top:0;
-
-        margin-left:0;
-
-        transform:
-            rotate(-3deg)
-            scale(1);
-
-    }
-
-    50%{
-
-        margin-top:-18px;
-
-        margin-left:-15px;
-
-        transform:
-            rotate(6deg)
-            scale(1.03);
-
-    }
-
-}
-
-
-/* =====================================================
-   FLOAT 4
-===================================================== */
-
-@keyframes floatYoutube{
-
-    0%,
-    100%{
-
-        margin-top:0;
-
-        margin-left:0;
-
-        transform:
-            rotate(4deg)
-            scale(1);
-
-    }
-
-    50%{
-
-        margin-top:18px;
-
-        margin-left:22px;
-
-        transform:
-            rotate(-6deg)
-            scale(1.05);
-
-    }
-
-}
-
-
-/* =====================================================
-   PROGRESS BAR
+   PROGRESS
 ===================================================== */
 
 .progress{
@@ -936,7 +880,6 @@ body{
     .hud{
 
         top:15px;
-
         left:15px;
 
         font-size:8px;
@@ -947,7 +890,6 @@ body{
     .status{
 
         top:15px;
-
         right:15px;
 
         font-size:7px;
@@ -984,7 +926,6 @@ body{
     .instagram{
 
         top:23%;
-
         right:9%;
 
     }
@@ -993,7 +934,6 @@ body{
     .tiktok{
 
         top:42%;
-
         right:7%;
 
     }
@@ -1002,7 +942,6 @@ body{
     .facebook{
 
         top:59%;
-
         right:13%;
 
     }
@@ -1011,7 +950,6 @@ body{
     .youtube{
 
         top:74%;
-
         right:8%;
 
     }
@@ -1034,11 +972,10 @@ body{
 
 
 <!-- =====================================================
-     FIXED VIDEO BACKGROUND
+     VIDEO BACKGROUND
 ===================================================== -->
 
 <div class="stage">
-
 
     <video
         id="video"
@@ -1048,11 +985,7 @@ body{
         playsinline>
     </video>
 
-
-    <canvas
-        id="canvas">
-    </canvas>
-
+    <canvas id="canvas"></canvas>
 
     <div class="overlay"></div>
 
@@ -1062,13 +995,12 @@ body{
 
     <div class="vignette"></div>
 
-
 </div>
 
 
 
 <!-- =====================================================
-     SCROLL CONTENT
+     SCROLL CONTAINER
 ===================================================== -->
 
 <div
@@ -1076,9 +1008,7 @@ body{
     id="scrollContainer">
 
 
-    <!-- =================================================
-         HUD
-    ================================================= -->
+    <!-- HUD -->
 
     <div class="hud">
 
@@ -1110,9 +1040,7 @@ body{
 
 
 
-    <!-- =================================================
-         STATUS
-    ================================================= -->
+    <!-- STATUS -->
 
     <div class="status">
 
@@ -1133,9 +1061,7 @@ body{
 
 
 
-    <!-- =================================================
-         INTRO
-    ================================================= -->
+    <!-- INTRO -->
 
     <div
         class="intro"
@@ -1154,13 +1080,11 @@ body{
 
 
     <!-- =================================================
-         SOCIAL ICONS
+         SOCIAL
     ================================================= -->
 
     <div class="social-icons">
 
-
-        <!-- INSTAGRAM -->
 
         <a
             class="social-icon instagram"
@@ -1173,9 +1097,6 @@ body{
         </a>
 
 
-
-        <!-- TIKTOK -->
-
         <a
             class="social-icon tiktok"
             href="#"
@@ -1187,9 +1108,6 @@ body{
         </a>
 
 
-
-        <!-- FACEBOOK -->
-
         <a
             class="social-icon facebook"
             href="#"
@@ -1200,9 +1118,6 @@ body{
 
         </a>
 
-
-
-        <!-- YOUTUBE -->
 
         <a
             class="social-icon youtube"
@@ -1219,9 +1134,7 @@ body{
 
 
 
-    <!-- =================================================
-         SCROLL INDICATOR
-    ================================================= -->
+    <!-- SCROLL -->
 
     <div class="scroll-indicator">
 
@@ -1233,9 +1146,7 @@ body{
 
 
 
-    <!-- =================================================
-         PROGRESS
-    ================================================= -->
+    <!-- PROGRESS -->
 
     <div
         class="progress"
@@ -1268,57 +1179,41 @@ body{
 ===================================================== */
 
 const video =
-    document.getElementById(
-        "video"
-    );
+    document.getElementById("video");
 
 
 const canvas =
-    document.getElementById(
-        "canvas"
-    );
+    document.getElementById("canvas");
 
 
 const ctx =
-    canvas.getContext(
-        "2d"
-    );
+    canvas.getContext("2d", {
+        alpha:false
+    });
 
 
 const container =
-    document.getElementById(
-        "scrollContainer"
-    );
+    document.getElementById("scrollContainer");
 
 
 const frameText =
-    document.getElementById(
-        "frame"
-    );
+    document.getElementById("frame");
 
 
 const percentText =
-    document.getElementById(
-        "percent"
-    );
+    document.getElementById("percent");
 
 
 const progressBar =
-    document.getElementById(
-        "progressBar"
-    );
+    document.getElementById("progressBar");
 
 
 const intro =
-    document.getElementById(
-        "intro"
-    );
+    document.getElementById("intro");
 
 
 const socialIcons =
-    document.querySelectorAll(
-        ".social-icon"
-    );
+    document.querySelectorAll(".social-icon");
 
 
 /* =====================================================
@@ -1335,16 +1230,47 @@ let ticking = false;
 
 
 /* =====================================================
-   RESIZE
+   CANVAS RESIZE
 ===================================================== */
 
 function resizeCanvas(){
 
+    const dpr =
+        Math.min(
+            window.devicePixelRatio || 1,
+            2
+        );
+
+
     canvas.width =
-        window.innerWidth;
+        Math.floor(
+            window.innerWidth * dpr
+        );
+
 
     canvas.height =
-        window.innerHeight;
+        Math.floor(
+            window.innerHeight * dpr
+        );
+
+
+    canvas.style.width =
+        window.innerWidth + "px";
+
+
+    canvas.style.height =
+        window.innerHeight + "px";
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
 
     drawFrame();
 
@@ -1397,7 +1323,8 @@ video.addEventListener(
 
 
 /* =====================================================
-   DRAW VIDEO
+   IMPORTANT:
+   DRAW VIDEO WITHOUT STRETCHING
 ===================================================== */
 
 function drawFrame(){
@@ -1421,8 +1348,8 @@ function drawFrame(){
 
 
     if(
-        !vw ||
-        !vh
+        vw <= 0 ||
+        vh <= 0
     ){
 
         return;
@@ -1431,66 +1358,84 @@ function drawFrame(){
 
 
     const cw =
-        canvas.width;
+        window.innerWidth;
 
 
     const ch =
-        canvas.height;
+        window.innerHeight;
 
 
     /*
-       ORIGINAL VIDEO RATIO
-
-       No stretching.
-       No squeezing.
-       Only cropping.
+       VIDEO RATIO
     */
-
 
     const videoRatio =
         vw / vh;
 
 
+    /*
+       SCREEN RATIO
+    */
+
     const screenRatio =
         cw / ch;
 
 
-    let width;
+    let sx = 0;
+    let sy = 0;
+    let sw = vw;
+    let sh = vh;
 
-    let height;
+
+    /*
+       CROP THE SOURCE IMAGE.
+
+       IMPORTANT:
+       We do NOT change the original
+       proportions of the video.
+
+       We only crop the sides/top.
+    */
 
 
     if(
-        screenRatio >
-        videoRatio
+        screenRatio > videoRatio
     ){
 
-        width =
-            cw;
+        /*
+           Screen is wider.
 
-        height =
-            cw /
-            videoRatio;
+           Crop top and bottom.
+        */
 
-    }else{
+        sh =
+            vw / screenRatio;
 
-        height =
-            ch;
+        sy =
+            (vh - sh) / 2;
 
-        width =
-            ch *
-            videoRatio;
+    }
+
+    else{
+
+        /*
+           Screen is taller.
+
+           Crop left and right.
+        */
+
+        sw =
+            vh * screenRatio;
+
+        sx =
+            (vw - sw) / 2;
 
     }
 
 
-    const x =
-        (cw - width) / 2;
-
-
-    const y =
-        (ch - height) / 2;
-
+    /*
+       Clear canvas
+    */
 
     ctx.clearRect(
         0,
@@ -1500,12 +1445,28 @@ function drawFrame(){
     );
 
 
+    /*
+       Draw EXACTLY to screen.
+
+       Because the source was cropped
+       using the same aspect ratio,
+       the video cannot stretch.
+    */
+
     ctx.drawImage(
+
         video,
-        x,
-        y,
-        width,
-        height
+
+        sx,
+        sy,
+        sw,
+        sh,
+
+        0,
+        0,
+        cw,
+        ch
+
     );
 
 }
@@ -1526,7 +1487,7 @@ video.addEventListener(
 
 
 /* =====================================================
-   MAIN UPDATE
+   UPDATE
 ===================================================== */
 
 function update(){
@@ -1544,14 +1505,21 @@ function update(){
     }
 
 
-    /* TOTAL SCROLL */
+    /*
+       TOTAL SCROLL DISTANCE
+    */
 
     const total =
-        container.offsetHeight -
-        window.innerHeight;
+        Math.max(
+            1,
+            container.offsetHeight -
+            window.innerHeight
+        );
 
 
-    /* PROGRESS */
+    /*
+       SCROLL PROGRESS
+    */
 
     let progress =
         window.scrollY /
@@ -1568,9 +1536,12 @@ function update(){
         );
 
 
-    /* =================================================
-       VIDEO
-    ================================================= */
+    /*
+       VIDEO TIME
+
+       Slightly before the end
+       to avoid black final frame.
+    */
 
     const targetTime =
         progress *
@@ -1579,6 +1550,10 @@ function update(){
             duration - 0.05
         );
 
+
+    /*
+       Update video only when needed.
+    */
 
     if(
         Math.abs(
@@ -1596,17 +1571,16 @@ function update(){
     }
 
 
-    /* =================================================
-       FRAME
-    ================================================= */
+    /*
+       FRAME NUMBER
+    */
 
     const fps = 30;
 
 
     const currentFrame =
         Math.floor(
-            targetTime *
-            fps
+            targetTime * fps
         );
 
 
@@ -1619,9 +1593,9 @@ function update(){
         );
 
 
-    /* =================================================
+    /*
        PERCENT
-    ================================================= */
+    */
 
     const percent =
         Math.round(
@@ -1633,27 +1607,28 @@ function update(){
         percent;
 
 
-    /* =================================================
+    /*
        PROGRESS BAR
-    ================================================= */
+    */
 
     progressBar.style.width =
         percent + "%";
 
 
-    /* =================================================
-       INTRO
-    ================================================= */
+    /*
+       INTRO FADE
+    */
 
     if(
-        progress >
-        0.08
+        progress > 0.08
     ){
 
         intro.style.opacity =
             "0";
 
-    }else{
+    }
+
+    else{
 
         intro.style.opacity =
             String(
@@ -1664,9 +1639,9 @@ function update(){
     }
 
 
-    /* =================================================
+    /*
        SOCIAL ICONS
-    ================================================= */
+    */
 
     const starts = [
 
@@ -1690,7 +1665,9 @@ function update(){
                     "active"
                 );
 
-            }else{
+            }
+
+            else{
 
                 icon.classList.remove(
                     "active"
@@ -1705,11 +1682,13 @@ function update(){
 
 
 /* =====================================================
-   SCROLL
+   SCROLL EVENT
 ===================================================== */
 
 window.addEventListener(
+
     "scroll",
+
     function(){
 
         if(
@@ -1725,14 +1704,16 @@ window.addEventListener(
         }
 
     },
+
     {
         passive:true
     }
+
 );
 
 
 /* =====================================================
-   INITIALIZE
+   START
 ===================================================== */
 
 video.load();
@@ -1745,4 +1726,5 @@ update();
 
 
 </body>
+
 </html>
