@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ALMOHSEN — Cinematic Portfolio</title>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>ALMOHSEN // EXPERIENCE</title>
+
 
 <style>
+
+/* =====================================================
+   RESET
+===================================================== */
 
 *{
     margin:0;
@@ -14,39 +23,52 @@
     box-sizing:border-box;
 }
 
+
 html,
 body{
+
     width:100%;
     min-height:100%;
+
     background:#000;
-    color:white;
-    font-family:Arial, sans-serif;
+
+    color:#fff;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
     overflow-x:hidden;
 }
 
-/* =================================
-   SCROLL AREA
-================================= */
+
+/* =====================================================
+   SCROLL SPACE
+===================================================== */
 
 .scroll-container{
+
     position:relative;
-    height:700vh;
+
     width:100%;
+
+    height:700vh;
+
     z-index:10;
-    pointer-events:none;
+
 }
 
-/* =================================
+
+/* =====================================================
    FIXED VIDEO BACKGROUND
-================================= */
+===================================================== */
 
 .stage{
+
     position:fixed;
 
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
+    inset:0;
 
     width:100vw;
     height:100vh;
@@ -56,120 +78,244 @@ body{
     background:#000;
 
     z-index:0;
+
 }
 
-/* =================================
-   HIDDEN VIDEO SOURCE
-================================= */
+
+/* =====================================================
+   VIDEO SOURCE
+===================================================== */
 
 #video{
+
     position:absolute;
 
-    width:1px;
-    height:1px;
+    width:2px;
+    height:2px;
 
-    opacity:0.01;
+    opacity:0.001;
 
     pointer-events:none;
+
 }
 
-/* =================================
-   VIDEO CANVAS
-================================= */
+
+/* =====================================================
+   CANVAS
+===================================================== */
 
 #canvas{
-    position:absolute;
 
-    top:0;
-    left:0;
-
-    width:100%;
-    height:100%;
-
-    background:#000;
-
-    z-index:1;
-}
-
-/* =================================
-   DARK OVERLAY
-================================= */
-
-.overlay{
     position:absolute;
 
     inset:0;
 
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.35),
-            rgba(0,0,0,.05) 40%,
-            rgba(0,0,0,.75)
-        );
+    width:100%;
+    height:100%;
+
+    display:block;
+
+    background:#000;
+
+    z-index:1;
+
+}
+
+
+/* =====================================================
+   CINEMATIC DARKNESS
+===================================================== */
+
+.overlay{
+
+    position:absolute;
+
+    inset:0;
 
     z-index:2;
 
     pointer-events:none;
-}
-
-/* =================================
-   RED CINEMATIC LIGHT
-================================= */
-
-.red-light{
-    position:absolute;
-
-    inset:-20%;
 
     background:
-        radial-gradient(
-            circle at 50% 50%,
-            transparent 40%,
-            rgba(255,0,0,.18),
-            transparent 75%
+
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.05) 35%,
+            rgba(0,0,0,.7)
         );
+
+}
+
+
+/* =====================================================
+   RED LIGHT
+===================================================== */
+
+.red-light{
+
+    position:absolute;
+
+    inset:-30%;
 
     z-index:3;
 
     pointer-events:none;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 50%,
+            transparent 30%,
+            rgba(255,0,0,.08) 55%,
+            rgba(255,0,0,.22) 100%
+        );
+
 }
 
-/* =================================
+
+/* =====================================================
+   SCANLINES
+===================================================== */
+
+.scanlines{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:4;
+
+    pointer-events:none;
+
+    opacity:.12;
+
+    background:
+
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            transparent 3px,
+            rgba(255,0,0,.12) 4px
+        );
+
+}
+
+
+/* =====================================================
+   VIGNETTE
+===================================================== */
+
+.vignette{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:5;
+
+    pointer-events:none;
+
+    box-shadow:
+        inset 0 0 180px rgba(0,0,0,.95);
+
+}
+
+
+/* =====================================================
    HUD
-================================= */
+===================================================== */
 
 .hud{
+
     position:fixed;
 
-    top:25px;
+    top:24px;
     left:25px;
 
-    z-index:100;
+    z-index:200;
 
-    font-size:11px;
+    font-size:10px;
 
     letter-spacing:2px;
 
-    color:#ff4d4d;
+    line-height:1.9;
 
-    line-height:1.8;
+    color:#ff3434;
 
     text-shadow:
-        0 0 10px red;
+        0 0 10px rgba(255,0,0,.9);
 
     pointer-events:none;
+
 }
+
 
 .hud .white{
-    color:white;
+
+    color:#fff;
+
 }
 
-/* =================================
+
+.hud .line{
+
+    width:70px;
+
+    height:1px;
+
+    margin:5px 0;
+
+    background:#ff2020;
+
+    box-shadow:
+        0 0 10px red;
+
+}
+
+
+/* =====================================================
+   TOP RIGHT STATUS
+===================================================== */
+
+.status{
+
+    position:fixed;
+
+    top:25px;
+    right:25px;
+
+    z-index:200;
+
+    font-size:9px;
+
+    letter-spacing:3px;
+
+    color:rgba(255,255,255,.7);
+
+    text-align:right;
+
+    pointer-events:none;
+
+}
+
+
+.status span{
+
+    color:#ff3030;
+
+    text-shadow:
+        0 0 8px red;
+
+}
+
+
+/* =====================================================
    INTRO
-================================= */
+===================================================== */
 
 .intro{
+
     position:fixed;
 
     top:50%;
@@ -178,45 +324,59 @@ body{
     transform:
         translate(-50%,-50%);
 
-    text-align:center;
-
     z-index:100;
+
+    text-align:center;
 
     pointer-events:none;
 
-    transition:opacity .2s;
+    transition:
+        opacity .25s ease;
+
 }
+
 
 .intro h1{
 
     font-size:
-        clamp(40px,10vw,110px);
+        clamp(42px,10vw,115px);
 
-    letter-spacing:10px;
+    font-weight:700;
 
-    color:white;
+    letter-spacing:
+        clamp(5px,2vw,14px);
+
+    color:#fff;
 
     text-shadow:
-        0 0 15px rgba(255,0,0,.7),
-        0 0 40px rgba(255,0,0,.5);
+
+        0 0 10px rgba(255,0,0,.8),
+
+        0 0 35px rgba(255,0,0,.5),
+
+        0 0 80px rgba(255,0,0,.25);
+
 }
+
 
 .intro p{
 
-    margin-top:15px;
+    margin-top:18px;
 
-    font-size:12px;
+    font-size:10px;
 
-    letter-spacing:6px;
+    letter-spacing:7px;
 
     color:#ff3333;
+
 }
 
-/* =================================
-   SCROLL INDICATOR
-================================= */
 
-.scroll{
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.scroll-indicator{
 
     position:fixed;
 
@@ -226,24 +386,22 @@ body{
     transform:
         translateX(-50%);
 
-    z-index:100;
+    z-index:200;
 
-    font-size:10px;
+    text-align:center;
 
-    letter-spacing:4px;
+    font-size:9px;
 
-    color:white;
+    letter-spacing:5px;
 
-    opacity:.7;
+    color:rgba(255,255,255,.8);
 
     pointer-events:none;
+
 }
 
-.scroll::after{
 
-    content:"";
-
-    display:block;
+.scroll-line{
 
     width:1px;
 
@@ -251,197 +409,220 @@ body{
 
     margin:10px auto 0;
 
-    background:#ff2020;
+    background:#ff2222;
 
-    animation:pulse 1.4s infinite;
+    box-shadow:
+        0 0 10px red;
+
+    animation:
+        scrollPulse 1.5s infinite;
+
 }
 
-@keyframes pulse{
 
-    0%,
-    100%{
+@keyframes scrollPulse{
+
+    0%{
+
         opacity:.2;
-        transform:scaleY(.5);
+
+        transform:
+            scaleY(.3);
+
+        transform-origin:top;
+
     }
 
     50%{
+
         opacity:1;
-        transform:scaleY(1);
+
+        transform:
+            scaleY(1);
+
+    }
+
+    100%{
+
+        opacity:.2;
+
+        transform:
+            scaleY(.3);
+
+        transform-origin:bottom;
+
     }
 
 }
 
-/* =================================
+
+/* =====================================================
    SOCIAL CONTAINER
-================================= */
+===================================================== */
 
 .social-container{
 
     position:fixed;
 
-    top:50%;
-    right:0;
+    inset:0;
 
-    transform:
-        translateY(-50%);
-
-    width:
-        min(430px,90vw);
-
-    z-index:200;
+    z-index:150;
 
     pointer-events:none;
+
 }
 
-/* =================================
-   SOCIAL CARD
-================================= */
+
+/* =====================================================
+   GLASS CARD
+===================================================== */
 
 .card{
 
     position:absolute;
 
-    right:-500px;
-
     width:
-        min(390px,85vw);
+        min(380px,82vw);
 
-    padding:22px;
+    min-height:115px;
 
-    margin-bottom:18px;
+    padding:20px;
+
+    border-radius:20px;
 
     border:
-        1px solid rgba(255,50,50,.65);
+
+        1px solid
+        rgba(255,80,80,.5);
 
     border-right:
-        3px solid #ff2020;
 
-    border-radius:18px;
+        2px solid
+        rgba(255,30,30,.95);
 
     background:
+
         linear-gradient(
             135deg,
-            rgba(80,0,0,.55),
-            rgba(15,0,0,.75)
+            rgba(255,30,30,.13),
+            rgba(30,0,0,.38)
         );
 
     backdrop-filter:
-        blur(18px);
+        blur(22px)
+        saturate(150%);
 
     -webkit-backdrop-filter:
-        blur(18px);
+        blur(22px)
+        saturate(150%);
 
     box-shadow:
-        0 0 25px rgba(255,0,0,.15),
-        inset 0 0 25px rgba(255,0,0,.06);
 
-    transition:
-        right .8s cubic-bezier(.16,1,.3,1),
-        opacity .5s;
+        0 15px 50px
+        rgba(0,0,0,.45),
+
+        0 0 25px
+        rgba(255,0,0,.14),
+
+        inset 0 1px 0
+        rgba(255,255,255,.16),
+
+        inset 0 0 30px
+        rgba(255,0,0,.05);
 
     opacity:0;
 
+    transform:
+        translateX(140%)
+        rotate(5deg)
+        scale(.92);
+
+    transition:
+
+        transform
+        .9s cubic-bezier(.16,1,.3,1),
+
+        opacity
+        .5s ease;
+
+    overflow:hidden;
+
     pointer-events:auto;
+
 }
 
-/* =================================
+
+/* =====================================================
    CARD ACTIVE
-================================= */
+===================================================== */
 
 .card.active{
 
-    right:30px;
-
     opacity:1;
+
+    transform:
+        translateX(0)
+        rotate(0deg)
+        scale(1);
+
 }
 
-/* =================================
-   CARD TOP
-================================= */
 
-.card-top{
+/* =====================================================
+   CARD LIGHT EDGE
+===================================================== */
 
-    display:flex;
+.card::before{
 
-    align-items:center;
+    content:"";
 
-    gap:15px;
-}
+    position:absolute;
 
-/* =================================
-   ICON
-================================= */
+    top:0;
+    left:-100%;
 
-.icon{
+    width:80%;
 
-    width:50px;
-    height:50px;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    border-radius:12px;
+    height:100%;
 
     background:
-        rgba(255,0,0,.12);
 
-    border:
-        1px solid rgba(255,0,0,.5);
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.13),
+            transparent
+        );
 
-    color:#ff3333;
+    transform:
+        skewX(-20deg);
 
-    font-size:20px;
+    animation:
+        glassShine 4s infinite;
 
-    box-shadow:
-        0 0 15px rgba(255,0,0,.2);
 }
 
-/* =================================
-   CARD TITLE
-================================= */
 
-.card h2{
+@keyframes glassShine{
 
-    font-size:17px;
+    0%{
+        left:-100%;
+    }
 
-    letter-spacing:2px;
+    35%{
+        left:130%;
+    }
 
-    margin-bottom:5px;
+    100%{
+        left:130%;
+    }
+
 }
 
-.card p{
 
-    color:#aaa;
-
-    font-size:12px;
-
-    letter-spacing:1px;
-}
-
-/* =================================
-   CARD LINK
-================================= */
-
-.card a{
-
-    display:block;
-
-    margin-top:15px;
-
-    color:#ff4444;
-
-    text-decoration:none;
-
-    font-size:12px;
-
-    letter-spacing:2px;
-}
-
-/* =================================
-   SCAN EFFECT
-================================= */
+/* =====================================================
+   CARD SCAN
+===================================================== */
 
 .card::after{
 
@@ -452,47 +633,230 @@ body{
     left:0;
     right:0;
 
-    top:0;
+    top:-10px;
 
     height:1px;
 
     background:
+
         linear-gradient(
             90deg,
             transparent,
             #ff2222,
+            #fff,
+            #ff2222,
             transparent
         );
 
+    box-shadow:
+        0 0 10px red;
+
     animation:
-        scan 3s linear infinite;
+        cardScan 3s linear infinite;
+
 }
 
-@keyframes scan{
+
+@keyframes cardScan{
 
     0%{
+
         transform:
             translateY(0);
 
         opacity:0;
+
     }
 
-    20%{
+    10%{
+        opacity:1;
+    }
+
+    90%{
         opacity:1;
     }
 
     100%{
+
         transform:
-            translateY(120px);
+            translateY(140px);
 
         opacity:0;
+
     }
 
 }
 
-/* =================================
-   PROGRESS BAR
-================================= */
+
+/* =====================================================
+   CARD HEADER
+===================================================== */
+
+.card-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.icon{
+
+    flex-shrink:0;
+
+    width:52px;
+    height:52px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px;
+
+    color:#ff3535;
+
+    font-size:21px;
+
+    font-weight:bold;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(255,0,0,.22),
+            rgba(255,0,0,.04)
+        );
+
+    border:
+
+        1px solid
+        rgba(255,70,70,.55);
+
+    box-shadow:
+
+        0 0 20px
+        rgba(255,0,0,.18),
+
+        inset 0 0 15px
+        rgba(255,0,0,.1);
+
+}
+
+
+/* =====================================================
+   CARD TEXT
+===================================================== */
+
+.card h2{
+
+    font-size:15px;
+
+    letter-spacing:2px;
+
+    margin-bottom:6px;
+
+}
+
+
+.card p{
+
+    font-size:11px;
+
+    color:rgba(255,255,255,.55);
+
+    letter-spacing:1px;
+
+}
+
+
+/* =====================================================
+   CARD LINK
+===================================================== */
+
+.card a{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:7px 11px;
+
+    border-radius:7px;
+
+    border:
+        1px solid
+        rgba(255,40,40,.35);
+
+    color:#ff4a4a;
+
+    text-decoration:none;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    background:
+        rgba(255,0,0,.06);
+
+    transition:.3s;
+
+}
+
+
+.card a:hover{
+
+    background:
+        rgba(255,0,0,.18);
+
+    box-shadow:
+        0 0 15px rgba(255,0,0,.2);
+
+}
+
+
+/* =====================================================
+   RANDOM CARD POSITIONS
+===================================================== */
+
+.card:nth-child(1){
+
+    top:20%;
+
+}
+
+
+.card:nth-child(2){
+
+    top:39%;
+
+}
+
+
+.card:nth-child(3){
+
+    top:58%;
+
+}
+
+
+.card:nth-child(4){
+
+    top:74%;
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
 
 .progress{
 
@@ -505,17 +869,20 @@ body{
 
     width:0%;
 
+    z-index:500;
+
     background:#ff2020;
 
     box-shadow:
-        0 0 15px red;
+        0 0 15px red,
+        0 0 30px rgba(255,0,0,.5);
 
-    z-index:300;
 }
 
-/* =================================
-   END SECTION
-================================= */
+
+/* =====================================================
+   END
+===================================================== */
 
 .end{
 
@@ -531,28 +898,29 @@ body{
 
     justify-content:center;
 
-    background:#050505;
+    background:#030303;
 
-    text-align:center;
-
-    pointer-events:auto;
 }
+
 
 .end h1{
 
-    font-size:40px;
+    font-size:
+        clamp(30px,8vw,70px);
 
     letter-spacing:8px;
 
-    color:#ff2020;
+    color:#ff2222;
 
     text-shadow:
-        0 0 20px red;
+        0 0 25px red;
+
 }
 
-/* =================================
+
+/* =====================================================
    MOBILE
-================================= */
+===================================================== */
 
 @media(max-width:600px){
 
@@ -561,50 +929,98 @@ body{
         top:15px;
         left:15px;
 
-        font-size:9px;
+        font-size:8px;
+
     }
+
+
+    .status{
+
+        top:15px;
+        right:15px;
+
+        font-size:7px;
+
+    }
+
 
     .intro h1{
 
         letter-spacing:5px;
+
     }
 
-    .social-container{
 
-        top:auto;
+    .intro p{
 
-        bottom:70px;
+        letter-spacing:4px;
 
-        transform:none;
     }
 
-    .card.active{
-
-        right:15px;
-    }
 
     .card{
 
         width:
             calc(100vw - 30px);
+
+        min-height:105px;
+
+        padding:16px;
+
+    }
+
+
+    .card:nth-child(1){
+
+        top:22%;
+
+    }
+
+
+    .card:nth-child(2){
+
+        top:38%;
+
+    }
+
+
+    .card:nth-child(3){
+
+        top:55%;
+
+    }
+
+
+    .card:nth-child(4){
+
+        top:70%;
+
+    }
+
+
+    .scroll-indicator{
+
+        bottom:15px;
+
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =================================
+<!-- =====================================================
      FIXED VIDEO BACKGROUND
-================================= -->
+===================================================== -->
 
 <div class="stage">
 
-    <!-- VIDEO -->
+
     <video
         id="video"
         src="12.mp4"
@@ -613,35 +1029,45 @@ body{
         playsinline>
     </video>
 
-    <!-- CANVAS -->
-    <canvas id="canvas"></canvas>
 
-    <!-- EFFECTS -->
+    <canvas
+        id="canvas">
+    </canvas>
+
+
     <div class="overlay"></div>
 
     <div class="red-light"></div>
 
+    <div class="scanlines"></div>
+
+    <div class="vignette"></div>
+
+
 </div>
 
 
-<!-- =================================
+
+<!-- =====================================================
      SCROLL AREA
-================================= -->
+===================================================== -->
 
 <div
     class="scroll-container"
     id="scrollContainer">
 
 
-    <!-- =================================
+    <!-- =================================================
          HUD
-    ================================= -->
+    ================================================= -->
 
     <div class="hud">
 
         <div>
             ALMOHSEN // SYSTEM
         </div>
+
+        <div class="line"></div>
 
         <div class="white">
             VIDEO : 12.MP4
@@ -664,9 +1090,33 @@ body{
     </div>
 
 
-    <!-- =================================
+
+    <!-- =================================================
+         STATUS
+    ================================================= -->
+
+    <div class="status">
+
+        SYSTEM
+        <span>ONLINE</span>
+
+        <br>
+
+        VIDEO
+        <span>READY</span>
+
+        <br>
+
+        MODE
+        <span>SCROLL</span>
+
+    </div>
+
+
+
+    <!-- =================================================
          INTRO
-    ================================= -->
+    ================================================= -->
 
     <div
         class="intro"
@@ -683,18 +1133,22 @@ body{
     </div>
 
 
-    <!-- =================================
+
+    <!-- =================================================
          SOCIAL CARDS
-    ================================= -->
+    ================================================= -->
 
-    <div class="social-container">
+    <div
+        class="social-container">
 
 
-        <!-- INSTAGRAM -->
+        <!-- =============================================
+             INSTAGRAM
+        ============================================== -->
 
         <div
             class="card"
-            data-start="0.18">
+            data-start="0.16">
 
             <div class="card-top">
 
@@ -727,11 +1181,14 @@ body{
         </div>
 
 
-        <!-- TIKTOK -->
+
+        <!-- =============================================
+             TIKTOK
+        ============================================== -->
 
         <div
             class="card"
-            data-start="0.38">
+            data-start="0.35">
 
             <div class="card-top">
 
@@ -764,11 +1221,14 @@ body{
         </div>
 
 
-        <!-- FACEBOOK -->
+
+        <!-- =============================================
+             FACEBOOK
+        ============================================== -->
 
         <div
             class="card"
-            data-start="0.58">
+            data-start="0.55">
 
             <div class="card-top">
 
@@ -801,11 +1261,14 @@ body{
         </div>
 
 
-        <!-- YOUTUBE -->
+
+        <!-- =============================================
+             YOUTUBE
+        ============================================== -->
 
         <div
             class="card"
-            data-start="0.78">
+            data-start="0.76">
 
             <div class="card-top">
 
@@ -837,33 +1300,42 @@ body{
 
         </div>
 
+
     </div>
 
 
-    <!-- =================================
+
+    <!-- =================================================
          SCROLL INDICATOR
-    ================================= -->
+    ================================================= -->
 
-    <div class="scroll">
+    <div class="scroll-indicator">
+
         SCROLL
+
+        <div class="scroll-line"></div>
+
     </div>
 
 
-    <!-- =================================
-         PROGRESS
-    ================================= -->
+
+    <!-- =================================================
+         PROGRESS BAR
+    ================================================= -->
 
     <div
         class="progress"
         id="progressBar">
     </div>
 
+
 </div>
 
 
-<!-- =================================
+
+<!-- =====================================================
      END
-================================= -->
+===================================================== -->
 
 <section class="end">
 
@@ -877,49 +1349,57 @@ body{
 
 <script>
 
-/* =================================
+/* =====================================================
    ELEMENTS
-================================= */
-
-const container =
-    document.getElementById(
-        "scrollContainer"
-    );
+===================================================== */
 
 const video =
     document.getElementById(
         "video"
     );
 
+
 const canvas =
     document.getElementById(
         "canvas"
     );
+
 
 const ctx =
     canvas.getContext(
         "2d"
     );
 
+
+const container =
+    document.getElementById(
+        "scrollContainer"
+    );
+
+
 const frameText =
     document.getElementById(
         "frame"
     );
+
 
 const percentText =
     document.getElementById(
         "percent"
     );
 
+
 const progressBar =
     document.getElementById(
         "progressBar"
     );
 
+
 const intro =
     document.getElementById(
         "intro"
     );
+
 
 const cards =
     document.querySelectorAll(
@@ -927,22 +1407,24 @@ const cards =
     );
 
 
-/* =================================
-   VARIABLES
-================================= */
 
-let duration = 0;
+/* =====================================================
+   VARIABLES
+===================================================== */
 
 let ready = false;
+
+let duration = 0;
 
 let lastTime = -1;
 
 let ticking = false;
 
 
-/* =================================
-   CANVAS RESIZE
-================================= */
+
+/* =====================================================
+   RESIZE CANVAS
+===================================================== */
 
 function resizeCanvas(){
 
@@ -953,12 +1435,9 @@ function resizeCanvas(){
         window.innerHeight;
 
     drawFrame();
+
 }
 
-
-/* =================================
-   WINDOW RESIZE
-================================= */
 
 window.addEventListener(
     "resize",
@@ -966,9 +1445,10 @@ window.addEventListener(
 );
 
 
-/* =================================
-   VIDEO METADATA
-================================= */
+
+/* =====================================================
+   VIDEO READY
+===================================================== */
 
 video.addEventListener(
     "loadedmetadata",
@@ -987,10 +1467,6 @@ video.addEventListener(
 );
 
 
-/* =================================
-   VIDEO CAN PLAY
-================================= */
-
 video.addEventListener(
     "canplay",
     function(){
@@ -999,15 +1475,14 @@ video.addEventListener(
 
         drawFrame();
 
-        update();
-
     }
 );
 
 
-/* =================================
-   DRAW VIDEO FRAME
-================================= */
+
+/* =====================================================
+   DRAW VIDEO WITHOUT DISTORTION
+===================================================== */
 
 function drawFrame(){
 
@@ -1017,81 +1492,140 @@ function drawFrame(){
     ){
 
         return;
+
     }
 
 
-    const vw =
+    const videoWidth =
         video.videoWidth;
 
-    const vh =
+
+    const videoHeight =
         video.videoHeight;
 
 
     if(
-        !vw ||
-        !vh
+        !videoWidth ||
+        !videoHeight
     ){
 
         return;
+
     }
 
 
-    const cw =
+    const screenWidth =
         canvas.width;
 
-    const ch =
+
+    const screenHeight =
         canvas.height;
 
 
-    /* COVER */
 
-    const scale =
-        Math.max(
-            cw / vw,
-            ch / vh
-        );
+    /*
+       IMPORTANT
+
+       This keeps the original
+       video aspect ratio.
+
+       The video NEVER gets stretched.
+
+       If the screen ratio is different,
+       only the edges are cropped.
+    */
 
 
-    const width =
-        vw * scale;
+    const videoRatio =
+        videoWidth /
+        videoHeight;
 
-    const height =
-        vh * scale;
+
+    const screenRatio =
+        screenWidth /
+        screenHeight;
+
+
+    let drawWidth;
+
+    let drawHeight;
+
+
+    if(
+        screenRatio >
+        videoRatio
+    ){
+
+        /*
+           Screen wider than video
+        */
+
+        drawWidth =
+            screenWidth;
+
+        drawHeight =
+            screenWidth /
+            videoRatio;
+
+    }else{
+
+        /*
+           Screen taller than video
+        */
+
+        drawHeight =
+            screenHeight;
+
+        drawWidth =
+            screenHeight *
+            videoRatio;
+
+    }
 
 
     const x =
-        (cw - width) / 2;
+        (screenWidth -
+        drawWidth) / 2;
+
 
     const y =
-        (ch - height) / 2;
+        (screenHeight -
+        drawHeight) / 2;
 
 
-    /* CLEAR */
+
+    /*
+       Clear canvas
+    */
 
     ctx.clearRect(
         0,
         0,
-        cw,
-        ch
+        screenWidth,
+        screenHeight
     );
 
 
-    /* DRAW */
+
+    /*
+       Draw video
+    */
 
     ctx.drawImage(
         video,
         x,
         y,
-        width,
-        height
+        drawWidth,
+        drawHeight
     );
 
 }
 
 
-/* =================================
+
+/* =====================================================
    VIDEO SEEKED
-================================= */
+===================================================== */
 
 video.addEventListener(
     "seeked",
@@ -1103,39 +1637,50 @@ video.addEventListener(
 );
 
 
-/* =================================
-   UPDATE
-================================= */
+
+/* =====================================================
+   UPDATE SCROLL
+===================================================== */
 
 function update(){
 
     ticking = false;
 
 
-    if(!ready){
+    if(
+        !ready ||
+        !duration
+    ){
 
         return;
+
     }
 
 
-    /* =================================
-       TOTAL SCROLL DISTANCE
-    ================================= */
+
+    /*
+       Total scroll distance
+    */
 
     const total =
         container.offsetHeight -
         window.innerHeight;
 
 
-    /* =================================
-       CURRENT SCROLL
-    ================================= */
+
+    /*
+       Scroll percentage
+    */
 
     let progress =
-        window.scrollY / total;
+        window.scrollY /
+        total;
 
 
-    /* LIMIT 0 → 1 */
+
+    /*
+       Limit
+    */
 
     progress =
         Math.max(
@@ -1147,9 +1692,10 @@ function update(){
         );
 
 
-    /* =================================
-       VIDEO TIME
-    ================================= */
+
+    /* =================================================
+       VIDEO
+    ================================================= */
 
     const targetTime =
         progress *
@@ -1159,15 +1705,16 @@ function update(){
         );
 
 
-    /* =================================
-       SEEK
-    ================================= */
+
+    /*
+       Smooth frame seeking
+    */
 
     if(
         Math.abs(
             targetTime -
             lastTime
-        ) > 0.005
+        ) > 0.004
     ){
 
         lastTime =
@@ -1175,33 +1722,42 @@ function update(){
 
         video.currentTime =
             targetTime;
+
     }
 
 
-    /* =================================
-       FRAME NUMBER
-    ================================= */
 
-    const frame =
+    /* =================================================
+       FRAME NUMBER
+    ================================================= */
+
+    const fps =
+        30;
+
+
+    const currentFrame =
         Math.floor(
-            targetTime * 30
+            targetTime *
+            fps
         );
 
 
     frameText.textContent =
-        String(frame)
-        .padStart(
+        String(
+            currentFrame
+        ).padStart(
             4,
             "0"
         );
 
 
-    /* =================================
+
+    /* =================================================
        PERCENT
-    ================================= */
+    ================================================= */
 
     const percent =
-        Math.floor(
+        Math.round(
             progress * 100
         );
 
@@ -1210,20 +1766,23 @@ function update(){
         percent;
 
 
-    /* =================================
+
+    /* =================================================
        PROGRESS BAR
-    ================================= */
+    ================================================= */
 
     progressBar.style.width =
         percent + "%";
 
 
-    /* =================================
-       INTRO FADE
-    ================================= */
+
+    /* =================================================
+       INTRO
+    ================================================= */
 
     if(
-        progress > 0.08
+        progress >
+        0.08
     ){
 
         intro.style.opacity =
@@ -1240,9 +1799,10 @@ function update(){
     }
 
 
-    /* =================================
+
+    /* =================================================
        SOCIAL CARDS
-    ================================= */
+    ================================================= */
 
     cards.forEach(
         function(card){
@@ -1275,15 +1835,18 @@ function update(){
 }
 
 
-/* =================================
+
+/* =====================================================
    SCROLL EVENT
-================================= */
+===================================================== */
 
 window.addEventListener(
     "scroll",
     function(){
 
-        if(!ticking){
+        if(
+            !ticking
+        ){
 
             requestAnimationFrame(
                 update
@@ -1300,13 +1863,16 @@ window.addEventListener(
 );
 
 
-/* =================================
+
+/* =====================================================
    INITIALIZE
-================================= */
+===================================================== */
 
 video.load();
 
 resizeCanvas();
+
+update();
 
 </script>
 
