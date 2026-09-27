@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Scroll Website</title>
+<title>Almohsen</title>
 <style>
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-html {
-    scroll-behavior: auto;
-}
-body {
+html, body {
     background: #000;
-    color: #fff;
+    color: white;
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
 /* مساحة التمرير */
 .scroll-area {
-    height: 600vh;
+    height: 700vh;
 }
-/* الشاشة الثابتة */
+/* الشاشة */
 .sticky {
     position: sticky;
     top: 0;
@@ -32,77 +29,75 @@ body {
     overflow: hidden;
     background: #000;
 }
-/* الفيديو */
-canvas {
+/* Canvas */
+#canvas {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
 }
-/* طبقة داكنة */
+/* طبقة فوق الفيديو */
 .overlay {
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0,0,0,0.05),
-            rgba(0,0,0,0.65)
-        );
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.05),
+        rgba(0,0,0,0.65)
+    );
     pointer-events: none;
 }
-/* العنوان */
-.hero-text {
+/* الاسم */
+.intro {
     position: absolute;
     inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    transition: opacity .5s ease;
+    transition: opacity 0.5s ease;
     pointer-events: none;
 }
-.hero-text h1 {
-    font-size: clamp(35px, 8vw, 90px);
-    margin-bottom: 15px;
+.intro h1 {
+    font-size: clamp(45px, 10vw, 110px);
+    letter-spacing: 2px;
+    text-shadow: 0 5px 30px rgba(0,0,0,0.8);
 }
-.hero-text p {
-    font-size: clamp(15px, 3vw, 22px);
-    opacity: .85;
+.intro p {
+    margin-top: 15px;
+    font-size: 17px;
+    opacity: 0.8;
 }
-/* حسابات التواصل */
-.social-container {
+/* الحسابات */
+.socials {
     position: absolute;
     bottom: 8%;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
+    width: 92%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 12px;
 }
-/* زر الحساب */
+/* أزرار الحسابات */
 .social {
     color: white;
     text-decoration: none;
     padding: 13px 20px;
     border-radius: 50px;
-    background: rgba(0,0,0,.45);
-    border: 1px solid rgba(255,255,255,.3);
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.3);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     opacity: 0;
-    transform:
-        translateY(30px)
-        scale(.9);
+    transform: translateY(30px) scale(0.9);
     transition:
-        opacity .5s ease,
-        transform .5s ease,
-        background .3s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        background 0.3s ease;
 }
-/* عندما يظهر */
 .social.show {
     opacity: 1;
     transform:
@@ -110,20 +105,21 @@ canvas {
         scale(1);
 }
 .social:hover {
-    background: rgba(255,255,255,.2);
+    background: rgba(255,255,255,0.2);
 }
-/* تعليمات */
+/* سهم */
 .scroll-hint {
     position: absolute;
     bottom: 25px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 13px;
-    opacity: .7;
+    font-size: 14px;
+    opacity: 0.8;
     animation: bounce 1.5s infinite;
+    transition: opacity 0.4s ease;
 }
 @keyframes bounce {
-    0%,100% {
+    0%, 100% {
         transform:
             translateX(-50%)
             translateY(0);
@@ -134,19 +130,19 @@ canvas {
             translateY(-8px);
     }
 }
-/* تحميل */
+/* التحميل */
 .loading {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    font-size: 14px;
-    color: white;
-    z-index: 10;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 15px;
+    z-index: 20;
 }
 /* الهاتف */
-@media(max-width:600px) {
-    .social-container {
+@media (max-width: 600px) {
+    .socials {
         bottom: 6%;
         gap: 8px;
     }
@@ -159,16 +155,13 @@ canvas {
 </head>
 <body>
 <!--
-==================================================
-الفيديو
-==================================================
-ضع ملف الفيديو بجانب index.html
+====================================================
+VIDEO
+====================================================
+ضع 12.mp4 بجانب index.html
 مثال:
 index.html
-video.mp4
-ثم اكتب:
-video.mp4
-إذا كان اسم الفيديو مختلفاً، غيّر الاسم هنا.
+12.mp4
 -->
 <video
     id="video"
@@ -176,31 +169,28 @@ video.mp4
     preload="auto"
     muted
     playsinline
-    style="display:none">
+    webkit-playsinline
+    style="display:none;">
 </video>
 <!-- مساحة التمرير -->
 <section class="scroll-area">
     <div class="sticky">
-        <!-- Canvas يعرض Frames الفيديو -->
+        <!-- الفيديو يظهر هنا -->
         <canvas id="canvas"></canvas>
-        <!-- طبقة فوق الفيديو -->
         <div class="overlay"></div>
-        <!-- العنوان -->
+        <!-- الاسم -->
         <div
-            class="hero-text"
-            id="heroText">
+            class="intro"
+            id="intro">
             <div>
-                <!-- غيّر اسمك هنا -->
-                <h1>
-                    اسمك هنا
-                </h1>
+                <h1>Almohsen</h1>
                 <p>
-                    اسحب للأسفل
+                    Scroll to explore
                 </p>
             </div>
         </div>
-        <!-- حسابات التواصل -->
-        <div class="social-container">
+        <!-- الحسابات -->
+        <div class="socials">
             <!-- Instagram -->
             <a
                 class="social"
@@ -246,24 +236,24 @@ video.mp4
                 @YOUR_USERNAME
             </a>
         </div>
-        <!-- تعليمات التمرير -->
+        <!-- Scroll -->
         <div
             class="scroll-hint"
             id="scrollHint">
-            ↓ اسحب للأسفل ↓
+            ↓ Scroll ↓
         </div>
-        <!-- التحميل -->
+        <!-- Loading -->
         <div
             class="loading"
             id="loading">
-            جاري تحميل الفيديو...
+            Loading video...
         </div>
     </div>
 </section>
 <script>
 /*
 ====================================================
-الإعدادات
+ELEMENTS
 ====================================================
 */
 const video =
@@ -274,20 +264,26 @@ const ctx =
     canvas.getContext("2d");
 const scrollArea =
     document.querySelector(".scroll-area");
-const heroText =
-    document.getElementById("heroText");
+const intro =
+    document.getElementById("intro");
 const scrollHint =
     document.getElementById("scrollHint");
 const loading =
     document.getElementById("loading");
 const socials =
     document.querySelectorAll(".social");
-let videoReady = false;
-let duration = 0;
-let animationFrame = null;
 /*
 ====================================================
-تغيير حجم Canvas
+VARIABLES
+====================================================
+*/
+let videoReady = false;
+let duration = 0;
+let lastTime = -1;
+let ticking = false;
+/*
+====================================================
+CANVAS SIZE
 ====================================================
 */
 function resizeCanvas() {
@@ -297,9 +293,13 @@ function resizeCanvas() {
             2
         );
     canvas.width =
-        window.innerWidth * dpr;
+        Math.floor(
+            window.innerWidth * dpr
+        );
     canvas.height =
-        window.innerHeight * dpr;
+        Math.floor(
+            window.innerHeight * dpr
+        );
     canvas.style.width =
         window.innerWidth + "px";
     canvas.style.height =
@@ -316,46 +316,45 @@ function resizeCanvas() {
 }
 /*
 ====================================================
-رسم Frame الفيديو
+DRAW VIDEO FRAME
 ====================================================
 */
 function drawFrame() {
     if (
         !videoReady ||
-        !video.videoWidth
+        video.videoWidth === 0
     ) {
         return;
     }
-    const canvasWidth =
+    const cw =
         window.innerWidth;
-    const canvasHeight =
+    const ch =
         window.innerHeight;
-    const videoWidth =
+    const vw =
         video.videoWidth;
-    const videoHeight =
+    const vh =
         video.videoHeight;
     /*
-    جعل الفيديو يغطي الشاشة
-    مثل background-size: cover
+    Cover
     */
     const scale =
         Math.max(
-            canvasWidth / videoWidth,
-            canvasHeight / videoHeight
+            cw / vw,
+            ch / vh
         );
     const width =
-        videoWidth * scale;
+        vw * scale;
     const height =
-        videoHeight * scale;
+        vh * scale;
     const x =
-        (canvasWidth - width) / 2;
+        (cw - width) / 2;
     const y =
-        (canvasHeight - height) / 2;
+        (ch - height) / 2;
     ctx.clearRect(
         0,
         0,
-        canvasWidth,
-        canvasHeight
+        cw,
+        ch
     );
     ctx.drawImage(
         video,
@@ -367,25 +366,66 @@ function drawFrame() {
 }
 /*
 ====================================================
-حساب Scroll
+VIDEO LOADED
+====================================================
+*/
+function videoLoaded() {
+    if (videoReady)
+        return;
+    if (!video.duration)
+        return;
+    duration =
+        video.duration;
+    videoReady =
+        true;
+    loading.style.display =
+        "none";
+    resizeCanvas();
+    updateScroll();
+}
+/*
+====================================================
+VIDEO EVENTS
+====================================================
+*/
+video.addEventListener(
+    "loadedmetadata",
+    videoLoaded
+);
+video.addEventListener(
+    "loadeddata",
+    videoLoaded
+);
+video.addEventListener(
+    "canplay",
+    videoLoaded
+);
+video.addEventListener(
+    "seeked",
+    drawFrame
+);
+/*
+====================================================
+SCROLL
 ====================================================
 */
 function updateScroll() {
+    ticking = false;
     if (
         !videoReady ||
-        !duration
+        duration <= 0
     ) {
         return;
     }
     const rect =
         scrollArea.getBoundingClientRect();
-    const totalScroll =
+    const total =
         scrollArea.offsetHeight -
         window.innerHeight;
     let progress =
-        -rect.top / totalScroll;
+        -rect.top / total;
     /*
-    التأكد أن القيمة بين 0 و 1
+    0 → 1
     */
     progress =
         Math.max(
@@ -396,55 +436,65 @@ function updateScroll() {
             )
         );
     /*
-    تحويل Scroll إلى وقت الفيديو
+    تحويل Scroll
+    إلى وقت الفيديو
     */
     const targetTime =
         progress * duration;
     /*
-    تحريك الفيديو Frame by Frame
+    منع التحديثات الصغيرة جداً
     */
     if (
         Math.abs(
-            video.currentTime -
-            targetTime
-        ) > 0.01
+            targetTime - lastTime
+        ) > 0.015
     ) {
-        video.currentTime =
+        lastTime =
             targetTime;
+        try {
+            video.currentTime =
+                targetTime;
+        } catch (error) {
+            console.log(error);
+        }
     }
     /*
-    إخفاء العنوان
+    الاسم
     */
     if (progress > 0.15) {
-        heroText.style.opacity = "0";
+        intro.style.opacity =
+            "0";
     } else {
-        heroText.style.opacity =
-            1 -
-            (progress / 0.15);
+        intro.style.opacity =
+            String(
+                1 - progress / 0.15
+            );
     }
     /*
-    إخفاء تعليمات Scroll
+    السهم
     */
     if (progress > 0.08) {
-        scrollHint.style.opacity = "0";
+        scrollHint.style.opacity =
+            "0";
     } else {
-        scrollHint.style.opacity = "0.7";
+        scrollHint.style.opacity =
+            "0.8";
     }
     /*
-    إظهار حسابات التواصل
+    Social Media
     */
     socials.forEach(
-        function(element) {
+        function(item) {
             const start =
                 parseFloat(
-                    element.dataset.start
+                    item.dataset.start
                 );
             if (progress >= start) {
-                element.classList.add(
+                item.classList.add(
                     "show"
                 );
             } else {
-                element.classList.remove(
+                item.classList.remove(
                     "show"
                 );
             }
@@ -453,21 +503,17 @@ function updateScroll() {
 }
 /*
 ====================================================
-Scroll Event
+SCROLL EVENT
 ====================================================
 */
 window.addEventListener(
     "scroll",
     function() {
-        if (!animationFrame) {
-            animationFrame =
-                requestAnimationFrame(
-                    function() {
-                        updateScroll();
-                        animationFrame =
-                            null;
-                    }
-                );
+        if (!ticking) {
+            requestAnimationFrame(
+                updateScroll
+            );
+            ticking = true;
         }
     },
     {
@@ -476,62 +522,32 @@ window.addEventListener(
 );
 /*
 ====================================================
-تحميل الفيديو
-====================================================
-*/
-video.addEventListener(
-    "loadedmetadata",
-    function() {
-        duration =
-            video.duration;
-        videoReady =
-            true;
-        loading.style.display =
-            "none";
-        resizeCanvas();
-        updateScroll();
-    }
-);
-/*
-====================================================
-عند تغيير Frame
-====================================================
-*/
-video.addEventListener(
-    "seeked",
-    function() {
-        drawFrame();
-    }
-);
-/*
-====================================================
-تغيير حجم الشاشة
+RESIZE
 ====================================================
 */
 window.addEventListener(
     "resize",
-    function() {
-        resizeCanvas();
-    }
+    resizeCanvas
 );
 /*
 ====================================================
-خطأ الفيديو
+VIDEO ERROR
 ====================================================
 */
 video.addEventListener(
     "error",
     function() {
         loading.innerHTML =
-            "❌ لم يتم العثور على video.mp4";
+            "Video 12.mp4 was not found.<br>" +
+            "Make sure it is next to index.html.";
     }
 );
 /*
 ====================================================
-منع التشغيل العادي
+START
 ====================================================
 */
-video.pause();
+video.load();
 </script>
 </body>
 </html>
